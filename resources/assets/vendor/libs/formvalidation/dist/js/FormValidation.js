@@ -2263,7 +2263,7 @@
   function r(e, t) {
     var i = Object.assign({}, {
       fields: {},
-      locale: "en_US",
+      locale: "id_ID",
       plugins: {},
       init: function init(e) {}
     }, t);

@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
         formValidationName: {
           validators: {
             notEmpty: {
-              message: 'Please enter your name'
+              message: 'Masukkan Nama'
             },
             stringLength: {
               min: 6,
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
         formValidationEmail: {
           validators: {
             notEmpty: {
-              message: 'Please enter your email'
+              message: 'Masukkan Email'
             },
             emailAddress: {
               message: 'The value is not a valid email address'
