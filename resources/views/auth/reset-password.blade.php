@@ -1,6 +1,11 @@
 @php
 $configData = Helper::appClasses();
 $customizerHidden = 'customizer-hide';
+$isNavbar = false;
+$isMenu = false;
+$isFooter = false;
+$menuHorizontal = false;
+$navbarFull = false;
 @endphp
 
 @extends('public/template/master')
@@ -62,7 +67,6 @@ $customizerHidden = 'customizer-hide';
                 <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>
               </div>
             </div>
-            <input type="hidden" name="token" value="{{ $token }}">
             <div class="mb-3 form-password-toggle">
               <div class="input-group input-group-merge">
                 <div class="form-floating form-floating-outline">

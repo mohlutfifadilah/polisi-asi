@@ -34,7 +34,7 @@ class LoginCover extends Controller
       //   return redirect('/');
       // }
     } else {
-      return redirect('/')->with('alert', 'Email atau Password Salah');
+      return redirect()->back()->with('alert', 'Email atau Password Salah');
     }
   }
   public function actionLogout(){

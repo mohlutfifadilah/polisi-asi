@@ -1,100 +1,78 @@
 {
   "menu": [
     {
-      "name": "Dashboards",
+      "url": "/",
+      "name": "Beranda",
       "icon": "menu-icon tf-icons mdi mdi-home-outline",
-      "slug": "dashboard",
-      "submenu": [
-        {
-          "url": "/dashboard/ecommerce",
-          "name": "eCommerce",
-          "icon": "menu-icon tf-icons mdi mdi-chart-timeline-variant",
-          "slug": "dashboard-ecommerce"
-        },
-        {
-          "url": "/dashboard/crm",
-          "name": "CRM",
-          "icon": "menu-icon tf-icons mdi mdi-chart-donut",
-          "slug": "dashboard-crm"
-        },
-        {
-          "url": "/",
-          "name": "Analytics",
-          "icon": "menu-icon tf-icons mdi mdi-cart-outline",
-          "slug": "dashboard-analytics"
-        }
-      ]
+      "slug": "home"
     },
     {
-      "name": "Layouts",
-      "icon": "menu-icon tf-icons mdi mdi-window-maximize",
-      "slug": "layouts",
+      "name": "Profil",
+      "icon": "menu-icon tf-icons mdi mdi-card-account-details-outline",
+      "slug": "profil",
       "submenu": [
         {
-          "url": "layouts/without-menu",
-          "name": "Without menu",
-          "icon": "menu-icon tf-icons mdi mdi-page-layout-header-footer",
-          "slug": "layouts-without-menu"
+          "url": "profil/pimpinan",
+          "name": "Profil Pimpinan",
+          "icon": "menu-icon tf-icons mdi mdi-account-search-outline",
+          "slug": "pimpinan"
         },
         {
-          "url": "layouts/vertical",
+          "url": "profil/vertical",
           "name": "Vertical",
           "icon": "menu-icon tf-icons mdi mdi-dock-left",
-          "slug": "layouts-vertical",
+          "slug": "vertical",
           "target": "_blank"
         },
         {
-          "url": "layouts/fluid",
+          "url": "profil/fluid",
           "name": "Fluid",
           "icon": "menu-icon tf-icons mdi mdi-dock-top",
-          "slug": "layouts-fluid"
+          "slug": "fluid"
         },
         {
-          "url": "layouts/container",
+          "url": "profil/container",
           "name": "Container",
           "icon": "menu-icon tf-icons mdi mdi-dock-window",
-          "slug": "layouts-container"
+          "slug": "container"
         },
         {
-          "url": "layouts/blank",
+          "url": "profil/blank",
           "name": "Blank",
           "icon": "menu-icon tf-icons mdi mdi-page-layout-body",
-          "slug": "layouts-blank",
+          "slug": "blank",
           "target": "_blank"
         }
       ]
     },
     {
-      "name": "Apps",
-      "icon": "menu-icon tf-icons mdi mdi-apps",
-      "slug": [
-        "app",
-        "laravel"
-      ],
+      "name": "Publik",
+      "icon": "menu-icon tf-icons mdi mdi-earth",
+      "slug": "publik",
       "submenu": [
         {
-          "url": "app/email",
-          "name": "Email",
-          "icon": "menu-icon tf-icons mdi mdi-email-outline",
-          "slug": "app-email"
+          "url": "publik/survey",
+          "name": "Survey Kepuasan Masyarakat",
+          "icon": "menu-icon tf-icons mdi mdi-bulletin-board",
+          "slug": "survey"
         },
         {
-          "url": "app/chat",
-          "name": "Chat",
-          "icon": "menu-icon tf-icons mdi mdi-message-outline",
-          "slug": "app-chat"
+          "url": "publik/sosial",
+          "name": "Info Sosial",
+          "icon": "menu-icon tf-icons mdi mdi-information-variant",
+          "slug": "sosial"
         },
         {
-          "url": "app/calendar",
+          "url": "publik/calendar",
           "name": "Calendar",
           "icon": "menu-icon tf-icons mdi mdi-calendar-blank-outline",
-          "slug": "app-calendar"
+          "slug": "calendar"
         },
         {
-          "url": "app/kanban",
+          "url": "publik/kanban",
           "icon": "menu-icon tf-icons mdi mdi-view-grid-outline",
           "name": "Kanban",
-          "slug": "app-kanban"
+          "slug": "kanban"
         },
         {
           "name": "Invoice",
@@ -945,43 +923,27 @@
       ]
     },
     {
-      "name": "Tables",
-      "icon": "menu-icon tf-icons mdi mdi-table",
-      "slug": [
-        "tables",
-        "tables-datatables"
-      ],
+      "name": "Pengaduan",
+      "icon": "menu-icon tf-icons mdi mdi-account-alert-outline",
+      "slug": "pengaduan",
       "submenu": [
         {
-          "url": "tables/basic",
-          "name": "Tables",
-          "icon": "menu-icon tf-icons mdi mdi-grid-large",
-          "slug": "tables-basic"
+          "url": "pengaduan/lapor-aduan",
+          "name": "Lapor Aduan",
+          "icon": "menu-icon tf-icons mdi mdi-human-greeting-proximity",
+          "slug": "lapor-aduan"
         },
         {
-          "name": "Datatables",
-          "icon": "menu-icon tf-icons mdi mdi-grid",
-          "slug": "tables-datatables",
-          "submenu": [
-            {
-              "url": "tables/datatables-basic",
-              "name": "Basic",
-              "icon": "menu-icon tf-icons mdi mdi-circle-medium",
-              "slug": "tables-datatables-basic"
-            },
-            {
-              "url": "tables/datatables-advanced",
-              "name": "Advanced",
-              "icon": "menu-icon tf-icons mdi mdi-circle-medium",
-              "slug": "tables-datatables-advanced"
-            },
-            {
-              "url": "tables/datatables-extensions",
-              "name": "Extensions",
-              "icon": "menu-icon tf-icons mdi mdi-circle-medium",
-              "slug": "tables-datatables-extensions"
-            }
-          ]
+          "url": "pengaduan/lapak-aduan",
+          "name": "Lapak Aduan",
+          "icon": "menu-icon tf-icons mdi mdi-badge-account-horizontal-outline",
+          "slug": "lapak-aduan"
+        },
+        {
+          "url": "pengaduan/kontak-aduan",
+          "name": "Kontak Aduan",
+          "icon": "menu-icon tf-icons mdi mdi-account-box",
+          "slug": "kontak-aduan"
         }
       ]
     },

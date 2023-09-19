@@ -3,6 +3,7 @@
 @endisset
 @php
 $configData = Helper::appClasses();
+$hasCustomizer = false;
 @endphp
 
 @extends('layouts/commonMaster' )
@@ -54,7 +55,7 @@ $containerNav = ($containerNav ?? 'container-xxl');
       <div class="content-wrapper">
 
         @if ($isMenu)
-        @include('layouts/sections/menu/horizontalMenu')
+        @include('layouts/sections/menu/verticalMenu')
         @endif
 
         <!-- Content -->
@@ -67,9 +68,9 @@ $containerNav = ($containerNav ?? 'container-xxl');
             @yield('content')
 
             <!-- pricingModal -->
-            @if ($pricingModal)
+            {{-- @if ($pricingModal)
             @include('_partials/_modals/modal-pricing')
-            @endif
+            @endif --}}
             <!--/ pricingModal -->
           </div>
           <!-- / Content -->

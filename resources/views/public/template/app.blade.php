@@ -16,7 +16,7 @@ $isNavbar = ($isNavbar ?? true);
 $isMenu = ($isMenu ?? true);
 $isFlex = ($isFlex ?? false);
 $isFooter = ($isFooter ?? true);
-$customizerHidden = ($customizerHidden ?? '');
+$customizerHidden = ($customizerHidden ?? false);
 $pricingModal = ($pricingModal ?? false);
 
 /* HTML Classes */
@@ -67,9 +67,9 @@ $containerNav = ($containerNav ?? 'container-xxl');
             @yield('content')
 
             <!-- pricingModal -->
-            @if ($pricingModal)
+            {{-- @if ($pricingModal)
             @include('_partials/_modals/modal-pricing')
-            @endif
+            @endif --}}
             <!--/ pricingModal -->
           </div>
           <!-- / Content -->

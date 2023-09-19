@@ -5,7 +5,7 @@ $configData = Helper::appClasses();
 <aside id="layout-menu" class="layout-menu-horizontal menu-horizontal  menu bg-menu-theme flex-grow-0">
   <div class="{{$containerNav}} d-flex h-100">
     <ul class="menu-inner py-1">
-      @foreach ($menuData[1]->menu as $menu)
+      @foreach ($menuData[1]->menu as $index => $menu)
 
       {{-- active menu method --}}
       @php
@@ -28,18 +28,18 @@ $configData = Helper::appClasses();
               $activeClass = 'active';
             }
           }
-
         }
       @endphp
 
       {{-- main menu --}}
-      <li class="menu-item {{$activeClass}}">
+      <li class="menu-item {{ $activeClass }} {{ Request::segment(1) === $menu->slug ? 'active' : (!Request::segment(1) && $index === 0 ? 'active' : '') }}">
         <a href="{{ isset($menu->url) ? url($menu->url) : 'javascript:void(0);' }}" class="{{ isset($menu->submenu) ? 'menu-link menu-toggle' : 'menu-link' }}" @if (isset($menu->target) and !empty($menu->target)) target="_blank" @endif>
           @isset($menu->icon)
           <i class="{{ $menu->icon }}"></i>
           @endisset
           <div>{{ isset($menu->name) ? __($menu->name) : '' }}</div>
         </a>
+        {{-- {{ $currentRouteName }} --}}
 
         {{-- submenu --}}
         @isset($menu->submenu)

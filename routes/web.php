@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AduanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\laravel_example\UserManagement;
+use App\Http\Controllers\UsersController;
 use App\Models\User;
 use Illuminate\Support\Facades\Request;
 
@@ -60,6 +62,11 @@ Route::get('/app/invoice/preview', $controller_path . '\apps\InvoicePreview@inde
 Route::get('/app/invoice/print', $controller_path . '\apps\InvoicePrint@index')->name('app-invoice-print');
 Route::get('/app/invoice/edit', $controller_path . '\apps\InvoiceEdit@index')->name('app-invoice-edit');
 Route::get('/app/invoice/add', $controller_path . '\apps\InvoiceAdd@index')->name('app-invoice-add');
+Route::resource('/admin/users', UsersController::class);
+Route::get('get-users', function(){
+  $users = User::select(['id_role', 'name', 'email', 'created_at'])->get();
+  return response()->json(['data' => $users]);
+});
 Route::get('/app/user/list', $controller_path . '\apps\UserList@index')->name('app-user-list');
 Route::get('/app/user/view/account', $controller_path . '\apps\UserViewAccount@index')->name('app-user-view-account');
 Route::get('/app/user/view/security', $controller_path . '\apps\UserViewSecurity@index')->name('app-user-view-security');
@@ -89,6 +96,7 @@ Route::get('/pages/misc-under-maintenance', $controller_path . '\pages\MiscUnder
 Route::get('/pages/misc-comingsoon', $controller_path . '\pages\MiscComingSoon@index')->name('pages-misc-comingsoon');
 Route::get('/pages/misc-not-authorized', $controller_path . '\pages\MiscNotAuthorized@index')->name('pages-misc-not-authorized');
 Route::get('/pages/misc-server-error', $controller_path . '\pages\MiscServerError@index')->name('pages-misc-server-error');
+Route::resource('/pengaduan/lapor-aduan', AduanController::class);
 
 // authentication
 Route::get('/auth/login-basic', $controller_path . '\authentications\LoginBasic@index')->name('auth-login-basic');

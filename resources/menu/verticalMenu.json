@@ -27,6 +27,15 @@
       ]
     },
     {
+      "menuHeader": "Data Pengguna"
+    },
+    {
+      "url": "admin/users",
+      "name": "Pengguna",
+      "icon": "menu-icon tf-icons mdi mdi-account-outline",
+      "slug": "users"
+    },
+    {
       "name": "Layouts",
       "icon": "menu-icon tf-icons mdi mdi-window-maximize",
       "slug": "layouts",

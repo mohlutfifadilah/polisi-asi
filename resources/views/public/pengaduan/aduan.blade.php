@@ -92,112 +92,37 @@ $customizerHidden = 'customizer-hide';
   <!--/ Sessions line chart --> --}}
 
   <!-- Total Transactions & Report Chart -->
+  <form action="{{ route('lapor-aduan.store') }}" method="post">
+  @csrf
   <div class="col-12 col-xl-8">
     <div class="card">
       <div class="row">
-        <div class="col-md-12">
-          <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" class="active" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <div class="col-md-12 col-12 border-start">
+          <div class="card-header pb-1">
+            <div class="d-flex justify-content-between">
+              <h5 class="mb-1">Formulir Pengaduan</h5>
             </div>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="{{asset('assets/img/illustrations/illustration-john-'.$configData['style'].'.png')}}" class="d-block w-100" alt="..." height="415">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>First slide label</h5>
-                  <p>Some representative placeholder content for the first slide.</p>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img src="{{asset('assets/img/illustrations/illustration-john-'.$configData['style'].'.png')}}" class="d-block w-100" alt="..." height="415">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Second slide label</h5>
-                  <p>Some representative placeholder content for the second slide.</p>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img src="{{asset('assets/img/illustrations/illustration-john-'.$configData['style'].'.png')}}" class="d-block w-100" alt="..." height="415">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Third slide label</h5>
-                  <p>Some representative placeholder content for the third slide.</p>
-                </div>
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-        </div>
-        {{-- <div class="col-md-7 col-12 order-2 order-md-0">
-          <div class="card-header">
-            <h5 class="mb-0">Total Transactions</h5>
+            <p class="text-muted mb-0">Isi formulir dibawah ini untuk mengajukan pengaduan</p>
+            <hr class="my-3">
           </div>
           <div class="card-body">
-            <div id="totalTransactionChart"></div>
+            <div class="row">
+              <div class="col-12">
+                <div class="form-floating form-floating-outline mb-4">
+                  <textarea class="form-control h-px-150" id="exampleFormControlTextarea1" placeholder="Ajukan pengaduan disini .." name="aduan"></textarea>
+                  <label for="exampleFormControlTextarea1">Aduan</label>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
           </div>
         </div>
-        <div class="col-md-5 col-12 border-start">
-          <div class="card-header">
-            <div class="d-flex justify-content-between">
-              <h5 class="mb-1">Report</h5>
-              <div class="dropdown">
-                <button class="btn p-0" type="button" id="totalTransaction" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="mdi mdi-dots-vertical mdi-24px"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="totalTransaction">
-                  <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
-                  <a class="dropdown-item" href="javascript:void(0);">Share</a>
-                  <a class="dropdown-item" href="javascript:void(0);">Update</a>
-                </div>
-              </div>
-            </div>
-            <p class="text-muted mb-0">Last month transactions $234.40k</p>
-          </div>
-          <div class="card-body pt-3">
-            <div class="row">
-              <div class="col-6 border-end">
-                <div class="d-flex flex-column align-items-center">
-                  <div class="avatar">
-                    <div class="avatar-initial bg-label-success rounded">
-                      <div class="mdi mdi-trending-up mdi-24px"></div>
-                    </div>
-                  </div>
-                  <p class="text-muted my-2">This Week</p>
-                  <h6 class="mb-0 fw-semibold">+82.45%</h6>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="d-flex flex-column align-items-center">
-                  <div class="avatar">
-                    <div class="avatar-initial bg-label-primary rounded">
-                      <div class="mdi mdi-trending-down mdi-24px"></div>
-                    </div>
-                  </div>
-                  <p class="text-muted my-2">This Week</p>
-                  <h6 class="mb-0 fw-semibold">-24.86%</h6>
-                </div>
-              </div>
-            </div>
-            <hr class="my-4">
-            <div class="d-flex justify-content-around">
-              <div>
-                <p class="text-muted mb-1">Performance</p>
-                <h6 class="mb-0 fw-semibold">+94.15%</h6>
-              </div>
-              <button class="btn btn-primary" type="button">view report</button>
-            </div>
-          </div>
-        </div> --}}
       </div>
     </div>
   </div>
+  </form>
   <!--/ Total Transactions & Report Chart -->
 
   <!-- Performance Chart -->
