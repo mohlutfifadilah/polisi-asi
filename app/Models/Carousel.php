@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Carousel extends Model
 {
-    use HasFactory;
+  use HasFactory;
+  protected $table = 'carousel';
+
+  protected $guarded = ['id'];
+
+  public $timestamps = true;
 }

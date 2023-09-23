@@ -21,7 +21,7 @@ $(function () {
   // Variable declaration for table
   var dt_user_table = $('.datatables-users'),
     select2 = $('.select2'),
-    userView = baseUrl + 'app/user/view/account',
+    userView = '/Apps/Users/View/Account',
     statusObj = {
       1: { title: 'Pending', class: 'bg-label-warning' },
       2: { title: 'Active', class: 'bg-label-success' },
@@ -39,52 +39,47 @@ $(function () {
   // Users datatable
   if (dt_user_table.length) {
     var dt_user = dt_user_table.DataTable({
-      ajax: {
-        url: "{{ url('/get-users') }}",
-        headers: {
-          'X-CSRF-TOKEN': '{{ csrf_token() }}'
-        },
-        data: function (data) {
-          console.log(data);
-        }
-      }, // JSON file to add data
+      ajax: assetsPath + 'json/user-list.json', // JSON file to add data
       columns: [
         // columns according to JSON
-        { data: 'name' },
-        { data: 'id_role' },
-        { data: 'email' },
-        { data: 'created_at' },
+        { data: '' },
+        { data: 'full_name' },
+        { data: 'full_name' },
+        { data: 'role' },
+        { data: 'current_plan' },
+        { data: 'billing' },
+        { data: 'status' },
         { data: 'action' }
       ],
       columnDefs: [
-        // {
-        //   // For Responsive
-        //   className: 'control',
-        //   searchable: false,
-        //   orderable: false,
-        //   responsivePriority: 2,
-        //   targets: 0,
-        //   render: function (data, type, full, meta) {
-        //     return '';
-        //   }
-        // },
-        // {
-        //   // For Checkboxes
-        //   targets: 1,
-        //   orderable: false,
-        //   render: function () {
-        //     return '<input type="checkbox" class="dt-checkboxes form-check-input">';
-        //   },
-        //   checkboxes: {
-        //     selectAllRender: '<input type="checkbox" class="form-check-input">'
-        //   }
-        // },
+        {
+          // For Responsive
+          className: 'control',
+          searchable: false,
+          orderable: false,
+          responsivePriority: 2,
+          targets: 0,
+          render: function (data, type, full, meta) {
+            return '';
+          }
+        },
+        {
+          // For Checkboxes
+          targets: 1,
+          orderable: false,
+          render: function () {
+            return '<input type="checkbox" class="dt-checkboxes form-check-input">';
+          },
+          checkboxes: {
+            selectAllRender: '<input type="checkbox" class="form-check-input">'
+          }
+        },
         {
           // User full name and email
-          targets: 0,
+          targets: 2,
           responsivePriority: 4,
           render: function (data, type, full, meta) {
-            var $name = full['name'],
+            var $name = full['full_name'],
               $email = full['email'],
               $image = full['avatar'];
             if ($image) {
@@ -96,7 +91,7 @@ $(function () {
               var stateNum = Math.floor(Math.random() * 6);
               var states = ['success', 'danger', 'warning', 'info', 'dark', 'primary', 'secondary'];
               var $state = states[stateNum],
-                $name = full['name'],
+                $name = full['full_name'],
                 $initials = $name.match(/\b\w/g) || [];
               $initials = (($initials.shift() || '') + ($initials.pop() || '')).toUpperCase();
               $output = '<span class="avatar-initial rounded-circle bg-label-' + $state + '">' + $initials + '</span>';
@@ -125,9 +120,9 @@ $(function () {
         },
         {
           // User Role
-          targets: 1,
+          targets: 3,
           render: function (data, type, full, meta) {
-            var $role = full['id_role'];
+            var $role = full['role'];
             var roleBadgeObj = {
               Subscriber: '<i class="mdi mdi-account-outline mdi-20px text-primary me-2"></i>',
               Author: '<i class="mdi mdi-cog-outline mdi-20px text-warning me-2"></i>',
@@ -138,30 +133,30 @@ $(function () {
             return "<span class='text-truncate d-flex align-items-center'>" + roleBadgeObj[$role] + $role + '</span>';
           }
         },
-        // {
-        //   // Plans
-        //   targets: 4,
-        //   render: function (data, type, full, meta) {
-        //     var $plan = full['current_plan'];
+        {
+          // Plans
+          targets: 4,
+          render: function (data, type, full, meta) {
+            var $plan = full['current_plan'];
 
-        //     return '<span class="text-heading">' + $plan + '</span>';
-        //   }
-        // },
-        // {
-        //   // User Status
-        //   targets: 6,
-        //   render: function (data, type, full, meta) {
-        //     var $status = full['status'];
+            return '<span class="text-heading">' + $plan + '</span>';
+          }
+        },
+        {
+          // User Status
+          targets: 6,
+          render: function (data, type, full, meta) {
+            var $status = full['status'];
 
-        //     return (
-        //       '<span class="badge rounded-pill ' +
-        //       statusObj[$status].class +
-        //       '" text-capitalized>' +
-        //       statusObj[$status].title +
-        //       '</span>'
-        //     );
-        //   }
-        // },
+            return (
+              '<span class="badge rounded-pill ' +
+              statusObj[$status].class +
+              '" text-capitalized>' +
+              statusObj[$status].title +
+              '</span>'
+            );
+          }
+        },
         {
           // Actions
           targets: -1,
@@ -197,7 +192,7 @@ $(function () {
       language: {
         sLengthMenu: 'Show _MENU_',
         search: '',
-        searchPlaceholder: 'Cari ...'
+        searchPlaceholder: 'Search..'
       },
       // Buttons with Dropdown
       buttons: [
@@ -219,7 +214,7 @@ $(function () {
                     var el = $.parseHTML(inner);
                     var result = '';
                     $.each(el, function (index, item) {
-                      if (item.classList !== undefined && item.classList.contains('name')) {
+                      if (item.classList !== undefined && item.classList.contains('user-name')) {
                         result = result + item.lastChild.firstChild.textContent;
                       } else if (item.innerText === undefined) {
                         result = result + item.textContent;
@@ -256,7 +251,7 @@ $(function () {
                     var el = $.parseHTML(inner);
                     var result = '';
                     $.each(el, function (index, item) {
-                      if (item.classList !== undefined && item.classList.contains('name')) {
+                      if (item.classList !== undefined && item.classList.contains('user-name')) {
                         result = result + item.lastChild.firstChild.textContent;
                       } else if (item.innerText === undefined) {
                         result = result + item.textContent;
@@ -280,7 +275,7 @@ $(function () {
                     var el = $.parseHTML(inner);
                     var result = '';
                     $.each(el, function (index, item) {
-                      if (item.classList !== undefined && item.classList.contains('name')) {
+                      if (item.classList !== undefined && item.classList.contains('user-name')) {
                         result = result + item.lastChild.firstChild.textContent;
                       } else if (item.innerText === undefined) {
                         result = result + item.textContent;
@@ -304,7 +299,7 @@ $(function () {
                     var el = $.parseHTML(inner);
                     var result = '';
                     $.each(el, function (index, item) {
-                      if (item.classList !== undefined && item.classList.contains('name')) {
+                      if (item.classList !== undefined && item.classList.contains('user-name')) {
                         result = result + item.lastChild.firstChild.textContent;
                       } else if (item.innerText === undefined) {
                         result = result + item.textContent;
@@ -328,7 +323,7 @@ $(function () {
                     var el = $.parseHTML(inner);
                     var result = '';
                     $.each(el, function (index, item) {
-                      if (item.classList !== undefined && item.classList.contains('name')) {
+                      if (item.classList !== undefined && item.classList.contains('user-name')) {
                         result = result + item.lastChild.firstChild.textContent;
                       } else if (item.innerText === undefined) {
                         result = result + item.textContent;
@@ -356,7 +351,7 @@ $(function () {
           display: $.fn.dataTable.Responsive.display.modal({
             header: function (row) {
               var data = row.data();
-              return 'Details of ' + data['name'];
+              return 'Details of ' + data['full_name'];
             }
           }),
           type: 'column',
@@ -390,7 +385,7 @@ $(function () {
           .every(function () {
             var column = this;
             var select = $(
-              '<select id="UserRole" class="form-select text-capitalize"><option value=""> Pilih Role </option></select>'
+              '<select id="UserRole" class="form-select text-capitalize"><option value=""> Select Role </option></select>'
             )
               .appendTo('.user_role')
               .on('change', function () {
@@ -407,55 +402,55 @@ $(function () {
               });
           });
         // Adding plan filter once table initialized
-        // this.api()
-        //   .columns(4)
-        //   .every(function () {
-        //     var column = this;
-        //     var select = $(
-        //       '<select id="UserPlan" class="form-select text-capitalize"><option value=""> Select Plan </option></select>'
-        //     )
-        //       .appendTo('.user_plan')
-        //       .on('change', function () {
-        //         var val = $.fn.dataTable.util.escapeRegex($(this).val());
-        //         column.search(val ? '^' + val + '$' : '', true, false).draw();
-        //       });
+        this.api()
+          .columns(4)
+          .every(function () {
+            var column = this;
+            var select = $(
+              '<select id="UserPlan" class="form-select text-capitalize"><option value=""> Select Plan </option></select>'
+            )
+              .appendTo('.user_plan')
+              .on('change', function () {
+                var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                column.search(val ? '^' + val + '$' : '', true, false).draw();
+              });
 
-        //     column
-        //       .data()
-        //       .unique()
-        //       .sort()
-        //       .each(function (d, j) {
-        //         select.append('<option value="' + d + '">' + d + '</option>');
-        //       });
-        //   });
+            column
+              .data()
+              .unique()
+              .sort()
+              .each(function (d, j) {
+                select.append('<option value="' + d + '">' + d + '</option>');
+              });
+          });
         // Adding status filter once table initialized
-        // this.api()
-        //   .columns(6)
-        //   .every(function () {
-        //     var column = this;
-        //     var select = $(
-        //       '<select id="FilterTransaction" class="form-select text-capitalize"><option value=""> Select Status </option></select>'
-        //     )
-        //       .appendTo('.user_status')
-        //       .on('change', function () {
-        //         var val = $.fn.dataTable.util.escapeRegex($(this).val());
-        //         column.search(val ? '^' + val + '$' : '', true, false).draw();
-        //       });
+        this.api()
+          .columns(6)
+          .every(function () {
+            var column = this;
+            var select = $(
+              '<select id="FilterTransaction" class="form-select text-capitalize"><option value=""> Select Status </option></select>'
+            )
+              .appendTo('.user_status')
+              .on('change', function () {
+                var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                column.search(val ? '^' + val + '$' : '', true, false).draw();
+              });
 
-        //     column
-        //       .data()
-        //       .unique()
-        //       .sort()
-        //       .each(function (d, j) {
-        //         select.append(
-        //           '<option value="' +
-        //             statusObj[d].title +
-        //             '" class="text-capitalize">' +
-        //             statusObj[d].title +
-        //             '</option>'
-        //         );
-        //       });
-        //   });
+            column
+              .data()
+              .unique()
+              .sort()
+              .each(function (d, j) {
+                select.append(
+                  '<option value="' +
+                    statusObj[d].title +
+                    '" class="text-capitalize">' +
+                    statusObj[d].title +
+                    '</option>'
+                );
+              });
+          });
       }
     });
   }
@@ -467,54 +462,54 @@ $(function () {
 });
 
 // Validation & Phone mask
-// (function () {
-//   const phoneMaskList = document.querySelectorAll('.phone-mask'),
-//     addNewUserForm = document.getElementById('addNewUserForm');
+(function () {
+  const phoneMaskList = document.querySelectorAll('.phone-mask'),
+    addNewUserForm = document.getElementById('addNewUserForm');
 
-//   // Phone Number
-//   if (phoneMaskList) {
-//     phoneMaskList.forEach(function (phoneMask) {
-//       new Cleave(phoneMask, {
-//         phone: true,
-//         phoneRegionCode: 'US'
-//       });
-//     });
-//   }
-//   // Add New User Form Validation
-//   const fv = FormValidation.formValidation(addNewUserForm, {
-//     fields: {
-//       userFullname: {
-//         validators: {
-//           notEmpty: {
-//             message: 'Please enter fullname '
-//           }
-//         }
-//       },
-//       userEmail: {
-//         validators: {
-//           notEmpty: {
-//             message: 'Please enter your email'
-//           },
-//           emailAddress: {
-//             message: 'The value is not a valid email address'
-//           }
-//         }
-//       }
-//     },
-//     plugins: {
-//       trigger: new FormValidation.plugins.Trigger(),
-//       bootstrap5: new FormValidation.plugins.Bootstrap5({
-//         // Use this for enabling/changing valid/invalid class
-//         eleValidClass: '',
-//         rowSelector: function (field, ele) {
-//           // field is the field name & ele is the field element
-//           return '.mb-4';
-//         }
-//       }),
-//       submitButton: new FormValidation.plugins.SubmitButton(),
-//       // Submit the form when all fields are valid
-//       // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
-//       autoFocus: new FormValidation.plugins.AutoFocus()
-//     }
-//   });
-// })();
+  // Phone Number
+  if (phoneMaskList) {
+    phoneMaskList.forEach(function (phoneMask) {
+      new Cleave(phoneMask, {
+        phone: true,
+        phoneRegionCode: 'US'
+      });
+    });
+  }
+  // Add New User Form Validation
+  const fv = FormValidation.formValidation(addNewUserForm, {
+    fields: {
+      userFullname: {
+        validators: {
+          notEmpty: {
+            message: 'Please enter fullname '
+          }
+        }
+      },
+      userEmail: {
+        validators: {
+          notEmpty: {
+            message: 'Please enter your email'
+          },
+          emailAddress: {
+            message: 'The value is not a valid email address'
+          }
+        }
+      }
+    },
+    plugins: {
+      trigger: new FormValidation.plugins.Trigger(),
+      bootstrap5: new FormValidation.plugins.Bootstrap5({
+        // Use this for enabling/changing valid/invalid class
+        eleValidClass: '',
+        rowSelector: function (field, ele) {
+          // field is the field name & ele is the field element
+          return '.mb-4';
+        }
+      }),
+      submitButton: new FormValidation.plugins.SubmitButton(),
+      // Submit the form when all fields are valid
+      // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+      autoFocus: new FormValidation.plugins.AutoFocus()
+    }
+  });
+})();

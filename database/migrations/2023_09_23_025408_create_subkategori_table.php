@@ -10,12 +10,10 @@ return new class extends Migration {
    */
   public function up(): void
   {
-    Schema::create('aduan', function (Blueprint $table) {
+    Schema::create('subkategori', function (Blueprint $table) {
       $table->id();
-      $table->integer('id_user');
-      $table->integer('id_subkategori');
-      $table->integer('id_status');
-      $table->string('aduan');
+      $table->integer('id_kategori');
+      $table->string('name');
       $table->timestamps();
     });
   }
@@ -25,6 +23,6 @@ return new class extends Migration {
    */
   public function down(): void
   {
-    Schema::dropIfExists('aduan');
+    Schema::dropIfExists('subkategori');
   }
 };

@@ -1,6 +1,6 @@
 @extends('admin/template/master')
 
-@section('title', 'User List - Pages')
+@section('title', 'Data Pengguna')
 
 @section('vendor-style')
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')}}">
@@ -29,7 +29,7 @@
 
 @section('content')
 
-<div class="row g-4 mb-4">
+{{-- <div class="row g-4 mb-4">
   <div class="col-sm-6 col-xl-3">
     <div class="card">
       <div class="card-body">
@@ -115,7 +115,7 @@
     </div>
   </div>
 
-</div>
+</div> --}}
 <!-- Users List Table -->
 <div class="card">
   <div class="card-header">
@@ -130,10 +130,13 @@
     <table class="datatables-users table">
       <thead class="table-light">
         <tr>
+          <th></th>
+          <th></th>
+          <th>User</th>
           <th>Role</th>
-          <th>Nama</th>
-          <th>Email</th>
-          <th>Created_at</th>
+          <th>Plan</th>
+          <th>Billing</th>
+          <th>Status</th>
           <th>Actions</th>
         </tr>
       </thead>
