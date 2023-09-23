@@ -27,174 +27,30 @@ $customizerHidden = 'customizer-hide';
 
 @section('content')
 <div class="row gy-4">
-  {{-- <!-- Gamification Card -->
-  <div class="col-md-12 col-lg-8">
-    <div class="card">
-      <div class="d-flex align-items-end row">
-        <div class="col-md-6 order-2 order-md-1">
-          <div class="card-body">
-            <h4 class="card-title pb-xl-2">Congratulations <strong> John!</strong>🎉</h4>
-            <p class="mb-0">You have done <span class="fw-semibold">68%</span>😎 more sales today.</p>
-            <p>Check your new badge in your profile.</p>
-            <a href="javascript:;" class="btn btn-primary">View Profile</a>
-          </div>
-        </div>
-        <div class="col-md-6 text-center text-md-end order-1 order-md-2">
-          <div class="card-body pb-0 px-0 px-md-4 ps-0">
-            <img src="{{asset('assets/img/illustrations/illustration-john-'.$configData['style'].'.png')}}" height="180" alt="View Profile" data-app-light-img="illustrations/illustration-john-light.png" data-app-dark-img="illustrations/illustration-john-dark.png">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--/ Gamification Card -->
-
-  <!-- Statistics Total Order -->
-  <div class="col-lg-2 col-sm-6">
-    <div class="card h-100">
-      <div class="card-body">
-        <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
-          <div class="avatar">
-            <div class="avatar-initial bg-label-primary rounded">
-              <i class="mdi mdi-cart-plus mdi-24px"></i>
-            </div>
-          </div>
-          <div class="d-flex align-items-center">
-            <p class="mb-0 text-success me-1">+22%</p>
-            <i class="mdi mdi-chevron-up text-success"></i>
-          </div>
-        </div>
-        <div class="card-info mt-4 pt-1 mt-lg-1 mt-xl-4">
-          <h5 class="mb-2">155k</h5>
-          <p class="text-muted mb-lg-2 mb-xl-3">Total Orders</p>
-          <div class="badge bg-label-secondary rounded-pill">Last 4 Month</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--/ Statistics Total Order -->
-
-  <!-- Sessions line chart -->
-  <div class="col-lg-2 col-sm-6">
-    <div class="card h-100">
-      <div class="card-header pb-0">
-        <div class="d-flex align-items-end mb-1 flex-wrap gap-2">
-          <h4 class="mb-0 me-2">$38.5k</h4>
-          <p class="mb-0 text-success">+62%</p>
-        </div>
-        <span class="d-block mb-2 text-muted">Sessions</span>
-      </div>
-      <div class="card-body">
-        <div id="sessions"></div>
-      </div>
-    </div>
-  </div>
-  <!--/ Sessions line chart --> --}}
 
   <!-- Total Transactions & Report Chart -->
   <div class="col-12 col-xl-8">
     <div class="card">
       <div class="row">
         <div class="col-md-12">
-          <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" class="active" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="{{asset('assets/img/illustrations/illustration-john-'.$configData['style'].'.png')}}" class="d-block w-100" alt="..." height="415">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>First slide label</h5>
-                  <p>Some representative placeholder content for the first slide.</p>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img src="{{asset('assets/img/illustrations/illustration-john-'.$configData['style'].'.png')}}" class="d-block w-100" alt="..." height="415">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Second slide label</h5>
-                  <p>Some representative placeholder content for the second slide.</p>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img src="{{asset('assets/img/illustrations/illustration-john-'.$configData['style'].'.png')}}" class="d-block w-100" alt="..." height="415">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Third slide label</h5>
-                  <p>Some representative placeholder content for the third slide.</p>
-                </div>
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-        </div>
-        {{-- <div class="col-md-7 col-12 order-2 order-md-0">
-          <div class="card-header">
-            <h5 class="mb-0">Total Transactions</h5>
-          </div>
-          <div class="card-body">
-            <div id="totalTransactionChart"></div>
-          </div>
-        </div>
-        <div class="col-md-5 col-12 border-start">
           <div class="card-header">
             <div class="d-flex justify-content-between">
-              <h5 class="mb-1">Report</h5>
-              <div class="dropdown">
-                <button class="btn p-0" type="button" id="totalTransaction" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="mdi mdi-dots-vertical mdi-24px"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="totalTransaction">
-                  <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
-                  <a class="dropdown-item" href="javascript:void(0);">Share</a>
-                  <a class="dropdown-item" href="javascript:void(0);">Update</a>
-                </div>
-              </div>
+              <h5 class="mb-1">Kontak Aduan</h5>
             </div>
-            <p class="text-muted mb-0">Last month transactions $234.40k</p>
+            <p class="text-muted mb-0">Beberapa cara untuk kamu mengajukan aduan</p>
+            <hr class="my-3">
           </div>
-          <div class="card-body pt-3">
-            <div class="row">
-              <div class="col-6 border-end">
-                <div class="d-flex flex-column align-items-center">
-                  <div class="avatar">
-                    <div class="avatar-initial bg-label-success rounded">
-                      <div class="mdi mdi-trending-up mdi-24px"></div>
-                    </div>
-                  </div>
-                  <p class="text-muted my-2">This Week</p>
-                  <h6 class="mb-0 fw-semibold">+82.45%</h6>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="d-flex flex-column align-items-center">
-                  <div class="avatar">
-                    <div class="avatar-initial bg-label-primary rounded">
-                      <div class="mdi mdi-trending-down mdi-24px"></div>
-                    </div>
-                  </div>
-                  <p class="text-muted my-2">This Week</p>
-                  <h6 class="mb-0 fw-semibold">-24.86%</h6>
-                </div>
-              </div>
-            </div>
-            <hr class="my-4">
-            <div class="d-flex justify-content-around">
-              <div>
-                <p class="text-muted mb-1">Performance</p>
-                <h6 class="mb-0 fw-semibold">+94.15%</h6>
-              </div>
-              <button class="btn btn-primary" type="button">view report</button>
-            </div>
+          <div class="card-body">
+                <dl class="row">
+                <dt class="col-sm-3">Telepon</dt>
+                <dd class="col-sm-9">xxx</dd>
+
+                <dt class="col-sm-3">Email</dt>
+                <dd class="col-sm-9"><p>xxx</p></dd>
+                </dl>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15835.60840820779!2d110.4066086!3d-7.1373187!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7088a0ebc7f019%3A0x90dd741135bfd0af!2sDinas%20Sosial%20Kab%20Semarang!5e0!3m2!1sid!2sid!4v1695453013704!5m2!1sid!2sid" style="border:0; width: 100%;" height="350" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
-        </div> --}}
+        </div>
       </div>
     </div>
   </div>
@@ -203,63 +59,23 @@ $customizerHidden = 'customizer-hide';
   <!-- Performance Chart -->
   <div class="col-12 col-xl-4 col-md-6">
     <div class="card">
-      <div class="card-header d-flex align-items-center justify-content-between">
-        <h5 class="card-title m-0 me-2">Aduan Terbaru</h5>
-        {{-- <div class="dropdown">
-          <button class="btn p-0" type="button" id="projectStatus" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="mdi mdi-dots-vertical mdi-24px"></i>
-          </button>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="projectStatus">
-            <a class="dropdown-item" href="javascript:void(0);">Last 28 Days</a>
-            <a class="dropdown-item" href="javascript:void(0);">Last Month</a>
-            <a class="dropdown-item" href="javascript:void(0);">Last Year</a>
+      <div class="card-header pb-1">
+        <div class="d-flex justify-content-between">
+          <h5 class="mb-1">Performance</h5>
+          <div class="dropdown">
+            <button class="btn p-0" type="button" id="performanceDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="mdi mdi-dots-vertical mdi-24px"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="performanceDropdown">
+              <a class="dropdown-item" href="javascript:void(0);">Last 28 Days</a>
+              <a class="dropdown-item" href="javascript:void(0);">Last Month</a>
+              <a class="dropdown-item" href="javascript:void(0);">Last Year</a>
+            </div>
           </div>
-        </div> --}}
+        </div>
       </div>
-      @php
-      function waktuLalu($timestamp) {
-          $selisih = time() - $timestamp;
-          if ($selisih < 60) {
-              return $selisih . " detik yang lalu";
-          } elseif ($selisih < 3600) {
-              return round($selisih / 60) . " menit yang lalu";
-          } elseif ($selisih < 86400) {
-              return round($selisih / 3600) . " jam yang lalu";
-          } elseif ($selisih < 2592000) { // kurang dari 30 hari (sekitar 1 bulan)
-              return round($selisih / 86400) . " hari yang lalu";
-          } elseif ($selisih < 31536000) { // kurang dari 365 hari (sekitar 1 tahun)
-              return round($selisih / 2592000) . " bulan yang lalu";
-          } else {
-              return round($selisih / 31536000) . " tahun yang lalu";
-          }
-      }
-      @endphp
-      <div class="card-body">
-        <ul class="p-0 m-0">
-          <li class="d-flex mb-3 justify-content-between pb-2">
-            <h6 class="mb-0 small">ADUAN</h6>
-            <h6 class="mb-0 small">WAKTU</h6>
-          </li>
-          @foreach ($aduan as $a)
-            @php
-              $subkategori = \App\Models\Subkategori::find($a->id_subkategori);
-            @endphp
-          <li class="d-flex mb-4">
-            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-              <div class="me-2">
-                <h6 class="mb-0">{{ $subkategori->name }}</h6>
-                <small class="text-muted">{{ \Illuminate\Support\Str::limit($a->aduan, 50) }}</small>
-              </div>
-              <div class="badge bg-label-primary rounded-pill">{{ waktuLalu(strtotime($a->created_at)) }}</div>
-            </div>
-          </li>
-          @endforeach
-          <li class="d-flex mb-4">
-            <div class="d-flex w-100 flex-wrap align-items center justify-content-center">
-              <a href="/pengaduan/lapak-aduan" class="btn btn-primary">Lihat Semua</a>
-            </div>
-          </li>
-        </ul>
+      <div class="card-body pb-0">
+        <div id="performanceChart"></div>
       </div>
     </div>
   </div>

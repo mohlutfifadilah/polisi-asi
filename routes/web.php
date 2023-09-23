@@ -138,6 +138,10 @@ Route::get('/pages/misc-server-error', $controller_path . '\pages\MiscServerErro
   'pages-misc-server-error'
 );
 Route::resource('/pengaduan/lapor-aduan', AduanController::class);
+Route::get('/pengaduan/kontak-aduan', function () {
+  $pageConfigs = ['myLayout' => 'horizontal'];
+  return view('public.pengaduan.kontak', ['pageConfigs' => $pageConfigs]);
+});
 
 // authentication
 Route::get('/auth/login-basic', $controller_path . '\authentications\LoginBasic@index')->name('auth-login-basic');
