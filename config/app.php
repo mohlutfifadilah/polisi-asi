@@ -41,7 +41,7 @@ return [
     |
     */
 
-  'debug' => (bool) env('APP_DEBUG', false),
+  'debug' => (bool) env('APP_DEBUG', true),
 
   /*
     |--------------------------------------------------------------------------
@@ -197,6 +197,7 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
     App\Providers\MenuServiceProvider::class,
+    Yajra\DataTables\DataTablesServiceProvider::class,
 
   ],
 
@@ -213,7 +214,9 @@ return [
 
   'aliases' => Facade::defaultAliases()->merge([
     // 'ExampleClass' => App\Example\ExampleClass::class,
-    'Helper' => App\Helpers\Helpers::class
+    'Helper' => App\Helpers\Helpers::class,
+    'Datatables' => Yajra\Datatables\DatatablesServiceProvider::class
+
   ])->toArray(),
 
 ];

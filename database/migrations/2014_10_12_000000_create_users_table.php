@@ -18,7 +18,10 @@ return new class extends Migration {
       $table->timestamp('email_verified_at')->nullable();
       $table->string('password');
       $table->string('name');
-      $table->integer('is_active');
+      $table->string('address')->nullable();
+      $table->string('job_or_position')->nullable();
+      $table->integer('age')->nullable();
+      $table->integer('is_active')->default(1);
       $table->rememberToken();
       $table->foreignId('current_team_id')->nullable();
       $table->timestamps();

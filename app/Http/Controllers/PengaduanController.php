@@ -7,9 +7,9 @@ use App\Models\Subkategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AduanController extends Controller
+class PengaduanController extends Controller
 {
-  /**
+    /**
    * Display a listing of the resource.
    */
   public function index()
@@ -18,20 +18,12 @@ class AduanController extends Controller
     if (!Auth::check()) {
       return redirect()->back();
     }
-        $pageConfigs = ['myLayout' => 'vertical'];
-        if (Auth::user()->id_role === 2){
-          $aduan = Aduan::where('id_role', 2)->get();
-        } else if(Auth::user()->id_role === 3){
-          $aduan = Aduan::where('id_role', 3)->get();
-        } else if(Auth::user()->id_role === 4){
-          $aduan = Aduan::where('id_role', 4)->get();
-        }else{
-          $aduan = Aduan::all();
-        }
-        return view('admin.aduan.index', [
-          'pageConfigs' => $pageConfigs,
-          'aduan' => $aduan,
-        ]);
+    $pageConfigs = ['myLayout' => 'horizontal'];
+    $subkategori = Subkategori::all();
+    return view('public.pengaduan.aduan', [
+      'pageConfigs' => $pageConfigs,
+      'subkategori' => $subkategori,
+    ]);
   }
 
   /**
@@ -61,6 +53,7 @@ class AduanController extends Controller
 
     Aduan::create([
       'id_user' => $request->id_user,
+      'id_role' => 2, // pa kadin disposisi
       'id_subkategori' => $request->id_kategori,
       'id_status' => false,
       'aduan' => $request->aduan,

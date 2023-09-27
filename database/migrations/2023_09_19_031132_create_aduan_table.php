@@ -15,7 +15,10 @@ return new class extends Migration {
       $table->integer('id_user');
       $table->integer('id_subkategori');
       $table->integer('id_status');
+      $table->integer('id_role');
       $table->string('aduan');
+      $table->string('respon');
+      $table->integer('is_publish');
       $table->timestamps();
     });
   }

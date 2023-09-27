@@ -52,7 +52,7 @@ $containerNav = ($containerNav ?? 'container-xxl');
 
       <!-- Content wrapper -->
       <div class="content-wrapper">
-
+        
         @if ($isMenu)
         @include('layouts/sections/menu/horizontalMenu')
         @endif

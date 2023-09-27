@@ -26,7 +26,8 @@ class LoginCover extends Controller
 
       Auth::login($user, $request->get('remember'));
       // return redirect('dashboard')->with('alert', 'Selamat Datang');
-      if (Auth::user()->id_role == 1) {
+      $role = [1,2,3,4];
+      if (in_array(Auth::user()->id_role, $role)) {
         // Alert::success('Berhasil', 'Selamat Datang');
         return redirect('dashboard');
       } else {

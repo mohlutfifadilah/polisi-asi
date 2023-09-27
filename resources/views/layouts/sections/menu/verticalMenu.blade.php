@@ -31,7 +31,8 @@ $configData = Helper::appClasses();
 
     {{-- adding active and open class if child is active --}}
 
-    {{-- menu headers --}}
+    @if (in_array(Auth::user()->id_role, $menu->role))
+      {{-- menu headers --}}
     @if (isset($menu->menuHeader))
     <li class="menu-header fw-light mt-4">
       <span class="menu-header-text">{{ $menu->menuHeader }}</span>
@@ -82,6 +83,7 @@ $configData = Helper::appClasses();
       @include('layouts.sections.menu.submenu',['menu' => $menu->submenu])
       @endisset
     </li>
+    @endif
     @endif
     @endforeach
   </ul>

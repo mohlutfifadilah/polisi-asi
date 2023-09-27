@@ -11,7 +11,7 @@ class PublicController extends Controller
     //
     public function index(){
       $pageConfigs = ['myLayout' => 'horizontal'];
-      $aduan = Aduan::select('id_subkategori', 'aduan', 'created_at')->get();
+      $aduan = Aduan::select('id_subkategori', 'aduan', 'created_at')->where('id_status', 1)->get();
       return view('public.landing', [
         'pageConfigs' => $pageConfigs,
         'aduan' => $aduan

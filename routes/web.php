@@ -1,9 +1,16 @@
 <?php
 
 use App\Http\Controllers\AduanController;
+use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\CarouselController;
+use App\Http\Controllers\KategoriController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\laravel_example\UserManagement;
+use App\Http\Controllers\PengaduanController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsersController;
+use App\Models\Aduan;
 use App\Models\User;
 use Illuminate\Support\Facades\Request;
 
@@ -72,11 +79,21 @@ Route::get('/app/invoice/preview', $controller_path . '\apps\InvoicePreview@inde
 Route::get('/app/invoice/print', $controller_path . '\apps\InvoicePrint@index')->name('app-invoice-print');
 Route::get('/app/invoice/edit', $controller_path . '\apps\InvoiceEdit@index')->name('app-invoice-edit');
 Route::get('/app/invoice/add', $controller_path . '\apps\InvoiceAdd@index')->name('app-invoice-add');
+Route::resource('/admin/role', RoleController::class);
 Route::resource('/admin/users', UsersController::class);
-Route::get('get-users', function () {
-  $users = User::all();
-  return response()->json(['data' => $users]);
+Route::resource('/admin/kategori', KategoriController::class);
+Route::resource('/admin/aduan', AduanController::class);
+Route::resource('/admin/carousel', CarouselController::class);
+Route::resource('/admin/artikel', ArtikelController::class);
+Route::resource('/admin/berita', BeritaController::class);
+Route::get('/get-user/{id}', function ($id) {
+  $user = User::find($id);
+    if (!$user) {
+        return response()->json(['message' => 'User not found'], 404);
+    }
+    return response()->json(['user' => $user]);
 });
+Route::get('/profile', $controller_path . '\ProfileController@index');
 Route::get('/app/user/list', $controller_path . '\apps\UserList@index')->name('app-user-list');
 Route::get('/app/user/view/account', $controller_path . '\apps\UserViewAccount@index')->name('app-user-view-account');
 Route::get('/app/user/view/security', $controller_path . '\apps\UserViewSecurity@index')->name(
@@ -137,7 +154,15 @@ Route::get('/pages/misc-not-authorized', $controller_path . '\pages\MiscNotAutho
 Route::get('/pages/misc-server-error', $controller_path . '\pages\MiscServerError@index')->name(
   'pages-misc-server-error'
 );
-Route::resource('/pengaduan/lapor-aduan', AduanController::class);
+Route::resource('/pengaduan/lapor-aduan', PengaduanController::class);
+Route::get('/pengaduan/lapak-aduan', function () {
+  $pageConfigs = ['myLayout' => 'horizontal'];
+  $aduan = Aduan::where('id_status', 1)->get();
+  return view('public.pengaduan.lapak', [
+    'pageConfigs' => $pageConfigs,
+    'aduan' => $aduan
+  ]);
+});
 Route::get('/pengaduan/kontak-aduan', function () {
   $pageConfigs = ['myLayout' => 'horizontal'];
   return view('public.pengaduan.kontak', ['pageConfigs' => $pageConfigs]);
