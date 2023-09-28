@@ -1,6 +1,6 @@
 @extends('admin/template/master')
 
-@section('title', 'Data Aduan')
+@section('title', 'Data Riwayat')
 
 @section('vendor-style')
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
@@ -120,7 +120,7 @@
     <!-- Users List Table -->
     <div class="card">
         <div class="card-header p-4">
-            <h5 class="card-title">Data Aduan</h5>
+            <h5 class="card-title">Data Riwayat</h5>
             {{-- <div class="d-flex flex-row-reverse">
                 <div class="mt-3">
                     <button class="btn btn-success btn-sm text-right" type="button" data-bs-toggle="offcanvas"

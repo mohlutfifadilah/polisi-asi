@@ -4,6 +4,7 @@ use App\Http\Controllers\AduanController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\CarouselController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\KategoriController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\laravel_example\UserManagement;
@@ -12,7 +13,8 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsersController;
 use App\Models\Aduan;
 use App\Models\User;
-use Illuminate\Support\Facades\Request;
+// use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -339,3 +341,25 @@ Route::get('/laravel/user-management', [UserManagement::class, 'UserManagement']
   'laravel-example-user-management'
 );
 Route::resource('/user-list', UserManagement::class);
+Route::resource('/admin/history', HistoryController::class);
+
+Route::post('/admin/aduan/{id}/update-role', function(Request $request, $id) {
+  // Validasi input jika diperlukan
+        // $request->validate([
+        //     'id_role' => 'required|in:3,4', // Sesuaikan dengan nilai yang diperbolehkan
+        // ]);
+        // dd($id)
+        // Cari pengguna berdasarkan ID
+        $aduan = Aduan::find($id);
+
+        // if (!$aduan) {
+        //     // Handle jika pengguna tidak ditemukan
+        //     return redirect()->route('users.index')->with('error', 'Pengguna tidak ditemukan.');
+        // }
+
+        // Update id_role pengguna dengan nilai yang baru
+        $aduan->id_role = $request->input('id_role');
+        $aduan->save();
+
+        return redirect()->route('aduan.index');
+});

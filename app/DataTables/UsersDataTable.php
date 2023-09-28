@@ -97,14 +97,4 @@ class UsersDataTable extends DataTable
         return 'Users_' . date('YmdHis');
     }
 
-    public function renderUserInfoColumn($data)
-    {
-      // Di sini, Anda dapat mengambil data foto profil dan nama
-      $profilePhotoPath = $data['profile_photo_path'];
-      $name = $data['name'];
-
-      // Kemudian, Anda dapat mengembalikan HTML yang sesuai
-      return '<div class="user-info"><img src="'.$profilePhotoPath.'" alt="Foto" /><span>'.$name.'</span></div>';
-    }
-
 }

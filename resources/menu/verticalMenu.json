@@ -6,17 +6,17 @@
         "icon": "menu-icon tf-icons mdi mdi-home-outline",
         "slug": "dashboard",
             "role": [
-              1,
-              2,
-              3,
-              4
+                1,
+                2,
+                3,
+                4
             ]
         },
         {
             "menuHeader": "Pengguna",
             "role": [
-              1,
-              2
+                1,
+                2
             ]
         },
         {
@@ -25,46 +25,58 @@
             "icon": "menu-icon tf-icons mdi mdi-text-account",
             "slug": "role",
             "role": [
-              1,
-              2
+                1,
+                2
             ]
-          },
-          {
+        },
+        {
             "url": "admin/users",
             "name": "Pengguna",
             "icon": "menu-icon tf-icons mdi mdi-account-outline",
             "slug": "users",
             "role": [
-              1,
-              2
+                1,
+                2
             ]
-          },
-          {
+        },
+        {
             "menuHeader": "Pengaduan",
             "role": [
-              1,
-              2,
-              3,
-              4
+                1,
+                2,
+                3,
+                4
             ]
-          },
-          {
+        },
+        {
             "url": "admin/kategori",
             "name": "Kategori",
             "icon": "menu-icon tf-icons mdi mdi-shape",
             "slug": "kategori",
             "role": [
-              1,
-              2,
-              3,
-              4
+                1,
+                2,
+                3,
+                4
             ]
-          },
-          {
+        },
+        {
             "url": "admin/aduan",
             "name": "Aduan",
             "icon": "menu-icon tf-icons mdi mdi-account-alert-outline",
             "slug": "aduan",
+            "role": [
+                1,
+                2,
+                3,
+                4
+            ]
+        },
+        {
+            "url": "admin/history",
+            "name": "Riwayat",
+            "icon": "menu-icon tf-icons mdi mdi-history",
+            "slug": "history",
             "role": [
               1,
               2,
@@ -75,7 +87,7 @@
           {
             "menuHeader": "Informasi Website",
             "role": [
-              1
+                1
             ]
         },
         {
@@ -84,7 +96,7 @@
             "icon": "menu-icon tf-icons mdi mdi-bulletin-board",
             "slug": "carousel",
             "role": [
-              1
+                1
             ]
         },
         {
@@ -93,7 +105,7 @@
             "icon": "menu-icon tf-icons mdi mdi-clipboard-edit-outline",
             "slug": "artikel",
             "role": [
-              1
+                1
             ]
         },
         {
@@ -102,8 +114,8 @@
             "icon": "menu-icon tf-icons mdi mdi-clipboard-list-outline",
             "slug": "berita",
             "role": [
-              1
+                1
             ]
         }
-      ]
+    ]
 }
