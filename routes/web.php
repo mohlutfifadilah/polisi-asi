@@ -159,7 +159,7 @@ Route::get('/pages/misc-server-error', $controller_path . '\pages\MiscServerErro
 Route::resource('/pengaduan/lapor-aduan', PengaduanController::class);
 Route::get('/pengaduan/lapak-aduan', function () {
   $pageConfigs = ['myLayout' => 'horizontal'];
-  $aduan = Aduan::where('id_status', 1)->get();
+  $aduan = Aduan::where('id_status', 1)->orderBy('created_at', 'DESC')->get();
   return view('public.pengaduan.lapak', [
     'pageConfigs' => $pageConfigs,
     'aduan' => $aduan

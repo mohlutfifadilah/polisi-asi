@@ -27,6 +27,7 @@ class RegisterCover extends Controller
       'name' => $request->name,
       'email' => $request->email,
       'password' => Hash::make($request->password),
+      'id_role' => 5
     ]);
     $data = [
       'email' => $request->input('email'),
@@ -36,6 +37,6 @@ class RegisterCover extends Controller
     $user = Auth::getProvider()->retrieveByCredentials($data);
 
     Auth::login($user, $request->get('remember'));
-    return redirect('dashboard')->with('alert', 'Selamat Datang');
+    return redirect('/')->with('alert', 'Selamat Datang');
   }
 }

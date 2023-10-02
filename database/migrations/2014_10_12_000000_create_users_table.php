@@ -14,7 +14,8 @@ return new class extends Migration {
       $table->id();
       $table->integer('id_role');
       $table->string('profile_photo_path', 2048)->nullable();
-      $table->string('email')->unique();
+      $table->string('email')->unique()->nullable();
+      $table->string('no_wa')->unique()->nullable();
       $table->timestamp('email_verified_at')->nullable();
       $table->string('password');
       $table->string('name');

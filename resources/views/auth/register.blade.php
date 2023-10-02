@@ -62,6 +62,11 @@ $customizerHidden = 'customizer-hide';
             <label for="email">Email</label>
             {{-- <small id="email-error" class="text-danger hidden">Email sudah ada</small> --}}
           </div>
+          <div class="form-floating form-floating-outline mb-3">
+            <input type="text" class="form-control" id="no_wa" name="no_wa" placeholder="Masukkan No Handphone">
+            <label for="no_wa">No Handphone</label>
+            {{-- <small id="email-error" class="text-danger hidden">Email sudah ada</small> --}}
+          </div>
           <div class="mb-3 form-password-toggle">
             <div class="input-group input-group-merge">
               <div class="form-floating form-floating-outline">

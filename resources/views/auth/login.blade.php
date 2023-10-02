@@ -24,10 +24,11 @@ $customizerHidden = 'customizer-hide';
 @endsection
 
 @section('page-script')
-<script src="{{asset('assets/js/pages-auth.js')}}"></script>
+{{-- <script src="{{asset('assets/js/pages-auth.js')}}"></script> --}}
 @endsection
 
 @section('content')
+@include('sweetalert::alert')
 <div class="authentication-wrapper authentication-cover">
   <!-- Logo -->
   <a href="{{url('/')}}" class="auth-cover-brand d-flex align-items-center gap-2">
@@ -53,8 +54,8 @@ $customizerHidden = 'customizer-hide';
         <form id="formAuthentication" class="mb-3" action="{{url('/actionLogin')}}" method="POST">
           @csrf
           <div class="form-floating form-floating-outline mb-3">
-            <input type="text" class="form-control" id="email" name="email" placeholder="Masukkan Email" autofocus>
-            <label for="email">Email</label>
+            <input type="text" class="form-control" id="login" name="login" placeholder="Masukkan Email / No HP" autofocus>
+            <label for="login">Email atau No Handphone</label>
           </div>
           <div class="mb-3">
             <div class="form-password-toggle">

@@ -6,14 +6,14 @@
             @endphp
             <div class="form-check mt-3">
                 <input name="default-radio-1" class="form-check-input" type="radio" value="" id="defaultRadio1"
-                    {{ $id->id_role === 3 ? 'checked' : '' }} />
+                    {{ $id->id_role === 3 ? 'checked' : '' }} {{ $id->id_role === 3 || $id->id_role === 4 ? 'disabled' : '' }}/>
                 <label class="form-check-label" for="defaultRadio1">
                     Bidang 1
                 </label>
             </div>
             <div class="form-check">
                 <input name="default-radio-1" class="form-check-input" type="radio" value="" id="defaultRadio2"
-                    {{ $id->id_role === 4 ? 'checked' : '' }} />
+                    {{ $id->id_role === 4 ? 'checked' : '' }} {{ $id->id_role === 3 || $id->id_role === 4 ? 'disabled' : '' }}/>
                 <label class="form-check-label" for="defaultRadio2">
                     Bidang 2
                 </label>

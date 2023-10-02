@@ -198,6 +198,7 @@ return [
         App\Providers\JetstreamServiceProvider::class,
     App\Providers\MenuServiceProvider::class,
     Yajra\DataTables\DataTablesServiceProvider::class,
+    RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
   ],
 
@@ -215,7 +216,8 @@ return [
   'aliases' => Facade::defaultAliases()->merge([
     // 'ExampleClass' => App\Example\ExampleClass::class,
     'Helper' => App\Helpers\Helpers::class,
-    'Datatables' => Yajra\Datatables\DatatablesServiceProvider::class
+    'Datatables' => Yajra\Datatables\DatatablesServiceProvider::class,
+    'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
 
   ])->toArray(),
 
