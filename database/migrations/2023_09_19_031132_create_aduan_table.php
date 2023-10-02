@@ -17,6 +17,7 @@ return new class extends Migration {
       $table->integer('id_status');
       $table->integer('id_role');
       $table->string('aduan');
+      $table->text('bukti')->nullable();
       $table->string('response')->nullable();
       $table->integer('is_publish')->nullable();
       $table->timestamps();

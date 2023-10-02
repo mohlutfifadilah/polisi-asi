@@ -152,6 +152,11 @@
                             <label for="job_or_position">Jabatan/Pekerjaan</label>
                         </div>
                         <div class="form-floating form-floating-outline mb-4">
+                            <input type="text" id="no_wa" class="form-control phone-mask"
+                                placeholder="Jabatan/Pekerjaan" aria-label="" name="no_wa" value="{{ $user->no_wa }}"/>
+                            <label for="no_wa">No Handphone</label>
+                        </div>
+                        <div class="form-floating form-floating-outline mb-4">
                             <input type="text" id="age" class="form-control" placeholder="Umur" aria-label="jdoe1"
                                 name="age" value="{{ $user->age }}"/>
                             <label for="age">Umur</label>

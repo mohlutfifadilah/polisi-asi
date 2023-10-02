@@ -43,7 +43,7 @@ class UsersDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->leftJoin('role', 'users.id_role', '=', 'role.id')->select('users.profile_photo_path', 'users.name', 'users.email', 'users.age', 'users.job_or_position', 'users.address', 'role.name AS role_name');
+        return $model->leftJoin('role', 'users.id_role', '=', 'role.id')->select('users.profile_photo_path', 'users.name', 'users.email', 'users.age', 'users.job_or_position', 'users.no_wa','users.address', 'role.name AS role_name');
 
     }
 
@@ -76,8 +76,9 @@ class UsersDataTable extends DataTable
             Column::make('name')->title('Nama'),
             Column::make('email')->title('Email'),
             Column::make('role_name')->title('Role')->searchable(false),
-            Column::make('age')->title('Umur'),
-            Column::make('job_or_position')->title('Pekerjaan'),
+            // Column::make('age')->title('Umur'),
+            // Column::make('job_or_position')->title('Pekerjaan'),
+            Column::make('no_wa')->title('No Handphone'),
             Column::make('address')->title('Alamat'),
             Column::computed('action')
                   ->title('Aksi')->orderable(false)

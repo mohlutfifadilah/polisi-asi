@@ -162,6 +162,12 @@
                                     <label for="job_or_position">Jabatan/Pekerjaan</label>
                                 </div>
                                 <div class="form-floating form-floating-outline mb-4">
+                                    <input type="text" id="no_wa" class="form-control phone-mask"
+                                        placeholder="Jabatan/Pekerjaan" aria-label=""
+                                        name="no_wa" />
+                                    <label for="no_wa">No Handphone</label>
+                                </div>
+                                <div class="form-floating form-floating-outline mb-4">
                                     <input type="text" id="age" class="form-control"
                                         placeholder="Umur" aria-label="jdoe1" name="age" />
                                     <label for="age">Umur</label>
@@ -172,7 +178,7 @@
                                 </div>
                                 <div class="form-floating form-floating-outline mb-4">
                                     <input type="password" id="password" class="form-control"
-                                        placeholder="Umur" aria-label="jdoe1" name="password" />
+                                        placeholder="Password" aria-label="jdoe1" name="password" />
                                     <label for="password">Password</label>
                                 </div>
                                 <button type="submit" class="btn btn-success me-sm-3 me-1 data-submit">Tambah</button>

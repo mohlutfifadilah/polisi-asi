@@ -33,7 +33,7 @@ class LoginCover extends Controller
     }
 
     $loginField = filter_var($request->input('login'), FILTER_VALIDATE_EMAIL) ? 'email' : 'no_wa';
-    
+
     $credentials = [
         $loginField => $request->input('login'),
         'password' => $request->input('password'),
@@ -49,7 +49,7 @@ class LoginCover extends Controller
           // Alert::success('Berhasil', 'Selamat Datang');
           return redirect('dashboard');
         } else {
-          Alert::error('Kesalahan', 'Hanya admin yang bisa login');
+          // Alert::error('Kesalahan', 'Hanya admin yang bisa login');
           return redirect('/');
         }
     } else {
