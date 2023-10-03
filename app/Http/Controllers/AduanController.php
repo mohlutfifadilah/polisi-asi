@@ -18,17 +18,17 @@ class AduanController extends Controller
         if (!Auth::check()) {
             return redirect()->back();
         }
-        $pageConfigs = ['myLayout' => 'vertical'];
-        if (Auth::user()->id_role === 2) {
-            $aduan = Aduan::where('id_role', 2)->get();
+        // $pageConfigs = ['myLayout' => 'vertical'];
+        if (Auth::user()->id_role === 1) {
+          $aduan = Aduan::all();
+        } elseif (Auth::user()->id_role === 2) {
+          $aduan = Aduan::where('id_role', 2)->where('id_status', 0)->get();
         } elseif (Auth::user()->id_role === 3) {
-            $aduan = Aduan::where('id_role', 3)->where('id_status', 0)->get();
+          $aduan = Aduan::where('id_role', 3)->where('id_status', 0)->get();
         } elseif (Auth::user()->id_role === 4) {
-            $aduan = Aduan::where('id_role', 4)->where('id_status', 0)->get();
-        } elseif (Auth::user()->id_role === 1) {
-            $aduan = Aduan::all();
+          $aduan = Aduan::where('id_role', 4)->where('id_status', 0)->get();
         }
-        // $aduan = Aduan::all();
+        $aduan = Aduan::all();
         // dd($aduan);
         return $dataTable->render('admin.aduan.index', ['aduan' => $aduan]);
         // return view('admin.aduan.index', [

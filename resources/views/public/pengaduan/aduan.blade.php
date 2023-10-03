@@ -138,7 +138,7 @@
                             <hr class="my-3">
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('lapor-aduan.store') }}" method="post">
+                            <form action="{{ route('lapor-aduan.store') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">
                                 <input type="hidden" name="id_role" value="{{ Auth::user()->id_role }}">

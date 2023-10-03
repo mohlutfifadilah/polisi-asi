@@ -6,92 +6,112 @@ use App\Models\Aduan;
 use App\Models\Subkategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PengaduanController extends Controller
 {
     /**
-   * Display a listing of the resource.
-   */
-  public function index()
-  {
-
-    if (!Auth::check()) {
-      return redirect()->back();
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        if (!Auth::check()) {
+            return redirect()->back();
+        }
+        $pageConfigs = ['myLayout' => 'horizontal'];
+        $subkategori = Subkategori::all();
+        return view('public.pengaduan.aduan', [
+            'pageConfigs' => $pageConfigs,
+            'subkategori' => $subkategori,
+        ]);
     }
-    $pageConfigs = ['myLayout' => 'horizontal'];
-    $subkategori = Subkategori::all();
-    return view('public.pengaduan.aduan', [
-      'pageConfigs' => $pageConfigs,
-      'subkategori' => $subkategori,
-    ]);
-  }
 
-  /**
-   * Show the form for creating a new resource.
-   */
-  public function create()
-  {
-    //
-  }
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
 
-  /**
-   * Store a newly created resource in storage.
-   */
-  public function store(Request $request)
-  {
-    //
-    // $validator = Validator::make($request->all(), [
-    //   'aduan' => 'required',
-    // ], [
-    //   'aduan.required' => 'Aduan tidak boleh kosong',
-    // ]);
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'id_kategori' => 'required',
+                'aduan' => 'required',
+                'bukti' => 'required|image|file',
+            ],
+            [
+                'id_kategori.required' => 'Kategori tidak boleh kosong',
+                'aduan.required' => 'Aduan tidak boleh kosong',
+                'bukti.mimes' => 'Format file harus jpg/jpeg atau png.',
+            ],
+        );
 
-    // if ($validator->fails()) {
-    //   Alert::error('Kesalahan', $validator->errors()->first());
-    //   return redirect()->back()->withErrors($validator)->withInput();
-    // }
+        if ($validator->fails()) {
+            Alert::error('Kesalahan', $validator->errors()->first());
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
 
-    Aduan::create([
-      'id_user' => $request->id_user,
-      'id_role' => 2, // pa kadin disposisi
-      'id_subkategori' => $request->id_kategori,
-      'id_status' => false,
-      'aduan' => $request->aduan,
-    ]);
+        if ($request->file('bukti')) {
+            $file = $request->file('bukti');
+            $bukti = $request->file('bukti')->store('aduan');
+            $file->move("storage/aduan/", $bukti);
+            $bukti = str_replace('aduan/', '', $bukti);
+            // $bukti = $request->file('bukti')->getClientOriginalName();
+        }
+        Aduan::create([
+            'id_user' => $request->id_user,
+            'id_role' => 2, // pa kadin disposisi
+            'id_subkategori' => $request->id_kategori,
+            'id_status' => false,
+            'bukti' => $bukti,
+            'aduan' => $request->aduan,
+        ]);
 
-    // Alert::success('Berhasil', 'Data Desa berhasil ditambah');
-    return redirect('/');
-  }
+        Alert::success('Berhasil', 'Aduan berhasil dilaporkan');
+        return redirect('/');
+    }
 
-  /**
-   * Display the specified resource.
-   */
-  public function show(string $id)
-  {
-    //
-  }
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
 
-  /**
-   * Show the form for editing the specified resource.
-   */
-  public function edit(string $id)
-  {
-    //
-  }
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
 
-  /**
-   * Update the specified resource in storage.
-   */
-  public function update(Request $request, string $id)
-  {
-    //
-  }
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
 
-  /**
-   * Remove the specified resource from storage.
-   */
-  public function destroy(string $id)
-  {
-    //
-  }
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
 }
