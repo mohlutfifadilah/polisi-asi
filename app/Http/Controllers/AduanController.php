@@ -5,8 +5,14 @@ namespace App\Http\Controllers;
 use App\DataTables\AduanDataTable;
 use App\Models\Aduan;
 use App\Models\Subkategori;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Str;
 
 class AduanController extends Controller
 {
@@ -20,13 +26,19 @@ class AduanController extends Controller
         }
         // $pageConfigs = ['myLayout' => 'vertical'];
         if (Auth::user()->id_role === 1) {
-          $aduan = Aduan::all();
+            $aduan = Aduan::all();
         } elseif (Auth::user()->id_role === 2) {
-          $aduan = Aduan::where('id_role', 2)->where('id_status', 0)->get();
+            $aduan = Aduan::where('id_role', 2)
+                ->where('id_status', 0)
+                ->get();
         } elseif (Auth::user()->id_role === 3) {
-          $aduan = Aduan::where('id_role', 3)->where('id_status', 0)->get();
+            $aduan = Aduan::where('id_role', 3)
+                ->where('id_status', 0)
+                ->get();
         } elseif (Auth::user()->id_role === 4) {
-          $aduan = Aduan::where('id_role', 4)->where('id_status', 0)->get();
+            $aduan = Aduan::where('id_role', 4)
+                ->where('id_status', 0)
+                ->get();
         }
         $aduan = Aduan::all();
         // dd($aduan);
@@ -97,12 +109,49 @@ class AduanController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'response' => 'required',
+            ],
+            [
+                'response.required' => 'Respon tidak boleh kosong',
+            ],
+        );
+
+        if ($validator->fails()) {
+            Alert::error('Kesalahan', $validator->errors()->first());
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $aduan = Aduan::find($id);
+        $user = User::find($aduan->id_user);
         $aduan->update([
             'id_status' => 1,
+            'id_role' => $user->id_role,
             'response' => $request->response,
             // 'is_publish' => false
         ]);
+
+        //Create Password Reset Token
+        DB::table('response_aduan_token')->insert([
+            'email' => $user->email,
+            'token' => Str::random(60),
+        ]);
+        //Get the token just created above
+        $tokenData = DB::table('response_aduan_token')
+            ->where('email', $user->email)
+            ->first();
+
+        Mail::send('emails.responAduan', ['token' => $tokenData->token, 'user' => $user, 'aduan' => $aduan->id], function ($message) use ($user) {
+            $message->to($user->email);
+            $message->subject('Aduan telah direspon');
+        });
+
+        Alert::success('Berhasil', 'Aduan berhasil direspon');
         return redirect()->route('aduan.index');
     }
 

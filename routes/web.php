@@ -199,6 +199,11 @@ Route::post('/actionLupaPassword', $controller_path . '\authentications\ForgotPa
 Route::get('/reset-password/{token}', function ($token) {
   return view('auth.reset-password', compact('token'));
 })->name('formReset');
+Route::get('/jawab-respon/{token}', function ($token, $aduan) {
+  dd($aduan);
+  $selectedAduan = Aduan::where('id', $aduan)->orWhere('id_aduan', $aduan)->orderBy('created_at', 'DESC')->get();
+  return view('public.jawabAduan', compact('token', 'selectedAduan'));
+})->name('formJawab');
 Route::post('/reset-password', $controller_path . '\authentications\ForgotPasswordCover@submitResetPassword')->name(
   'reset-password'
 );

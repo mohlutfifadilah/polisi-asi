@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ForgotPasswordCover extends Controller
 {
@@ -61,10 +62,10 @@ class ForgotPasswordCover extends Controller
     $email = DB::table('password_reset_tokens')->where('token', $request->token)->first();
     $email = $email->email;
     $updatePassword = DB::table('password_reset_tokens')->where('email', $email)->where('token', $request->token)->first();
-    // if (!$updatePassword) {
-    //   Alert::error('Kesalahan', 'Token salah');
-    //   return redirect()->back();
-    // }
+    if (!$updatePassword) {
+      Alert::error('Kesalahan', 'Token salah');
+      return redirect()->back();
+    }
     $user = User::where('email', $email)->first();
     $user->update([
       'password' => Hash::make($request->password)
@@ -72,7 +73,7 @@ class ForgotPasswordCover extends Controller
 
     DB::table('password_reset_tokens')->where(['email' => $email])->delete();
 
-    // Alert::success('Berhasil', 'Password berhasil diubah');
+    Alert::success('Berhasil', 'Password berhasil diubah');
     return redirect()->route('login');
   }
 }
