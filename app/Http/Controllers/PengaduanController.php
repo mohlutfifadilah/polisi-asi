@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Aduan;
 use App\Models\Subkategori;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -63,10 +65,12 @@ class PengaduanController extends Controller
                 ->withInput();
         }
 
+        $user = User::find(Auth::user()->id);
+
         if ($request->file('bukti')) {
             $file = $request->file('bukti');
             $bukti = $request->file('bukti')->store('aduan');
-            $file->move("storage/aduan/", $bukti);
+            $file->move('storage/aduan/', $bukti);
             $bukti = str_replace('aduan/', '', $bukti);
             // $bukti = $request->file('bukti')->getClientOriginalName();
         }
@@ -79,7 +83,12 @@ class PengaduanController extends Controller
             'aduan' => $request->aduan,
         ]);
 
-        Alert::success('Berhasil', 'Aduan berhasil dilaporkan');
+        Mail::send('emails.submitAduan', ['user' => $user], function ($message) use ($user) {
+            $message->to($user->email);
+            $message->subject('Aduan telah di submit');
+        });
+
+        Alert::success('Berhasil', 'Aduan berhasil dilaporkan <br> Tunggu respon dari Dinas');
         return redirect('/');
     }
 
