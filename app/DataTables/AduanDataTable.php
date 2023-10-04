@@ -29,7 +29,7 @@ class AduanDataTable extends DataTable
                     return view('admin.aduan.aduan_action', compact('aduan'));
                 })
                 ->addColumn('response', function ($aduan) use ($userRole) {
-                    if (($userRole === 3) | ($userRole === 4)) {
+                    if (($userRole === 3) | ($userRole === 4 || $userRole === 6)) {
                         // Hanya tampilkan kolom respon jika user memiliki id_role 3
                         return view('admin.aduan.aduan_response', compact('aduan'));
                     } else {
@@ -146,7 +146,7 @@ class AduanDataTable extends DataTable
                     ->width(60)
                     ->addClass('text-center')
             ];
-        }else if(Auth::user()->id_role === 3 || Auth::user()->id_role === 4){
+        }else if(Auth::user()->id_role === 3 || Auth::user()->id_role === 4 || Auth::user()->id_role === 6){
           return [
                 Column::make('users_name')->title('Nama'),
                 // Column::make('users_age')->title('Umur'),

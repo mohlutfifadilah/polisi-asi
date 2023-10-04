@@ -44,7 +44,7 @@ class LoginCover extends Controller
 
         // Lakukan pengecekan role di sini sesuai dengan logika yang Anda inginkan
         Auth::login($user, $request->get('remember'));
-        $role = [1,2,3,4];
+        $role = [1,2,3,4,6];
         if (in_array(Auth::user()->id_role, $role)) {
           // Alert::success('Berhasil', 'Selamat Datang');
           return redirect('dashboard');

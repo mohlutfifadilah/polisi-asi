@@ -24,26 +24,68 @@
 @endsection
 
 @section('content')
-
+    @php
+        $user = \App\Models\User::find($aduan->id_user);
+    @endphp
     <!-- Users List Table -->
     <div class="card">
         <div class="card-header p-4">
             <h5 class="card-title">Respon Aduan</h5>
         </div>
         <div class="card-body p-4">
+            <dl class="row">
+                <dt class="col-sm-6"><h5>Data Pengadu :</h5></dt>
+                <dd class="col-sm-6 mb-5"></dd>
+
+                <dt class="col-sm-3">Nama</dt>
+                <dd class="col-sm-9">{{ $user->name }}</dd>
+
+                <dt class="col-sm-3">Email</dt>
+                <dd class="col-sm-9">{{ $user->email }}</dd>
+
+                <dt class="col-sm-3">No Handphone</dt>
+                <dd class="col-sm-9">{{ $user->no_wa }}</dd>
+
+                <dt class="col-sm-3">Pekerjaan</dt>
+                <dd class="col-sm-9">{{ $user->job_or_position }}</dd>
+
+                <dt class="col-sm-3">Umur</dt>
+                <dd class="col-sm-9">{{ $user->age }}</dd>
+
+                <dt class="col-sm-3">Alamat</dt>
+                <dd class="col-sm-9">{{ $user->address }}</dd>
+
+                <dt class="col-sm-3">Bukti Aduan</dt>
+                <dd class="col-sm-9">
+                  <img src="{{ asset('/storage/aduan/' . $aduan->bukti) }}" class="img-fluid d-block" alt="" width="250" height="250">
+                </dd>
+            </dl>
+            <h5 class="mb-4">Aduan :</h5>
+            <ul class="timeline card-timeline mb-4">
+                <li class="timeline-item timeline-item-transparent">
+                    <span class="timeline-point timeline-point-info"></span>
+                    <div class="timeline-event">
+                        <div class="timeline-header mb-1">
+                            <h6 class="mb-2 fw-semibold">{{ $user->name }}</h6>
+                            <small
+                                class="text-muted">{{ \Carbon\Carbon::parse($aduan->created_at)->locale('id')->isoFormat('dddd, D MMMM YYYY HH:mm:ss') }}</small>
+                        </div>
+                        <p class="text-muted mb-2">{{ $aduan->aduan }}</p>
+                    </div>
+                </li>
+            </ul>
             <form action="{{ route('aduan.update', $aduan->id) }}" method="post">
                 @csrf
                 @method('PUT')
                 <div class="row">
                     <div class="col-12">
-                        <div class="form-floating form-floating-outline mb-4">
+                        {{-- <div class="form-floating form-floating-outline mb-4">
                             <textarea class="form-control h-px-150" id="exampleFormControlTextarea1" placeholder="Ajukan pengaduan disini .."
                                 name="aduan" disabled>{{ $aduan->aduan }}</textarea>
                             <label for="exampleFormControlTextarea1">Aduan</label>
-                        </div>
+                        </div> --}}
                         <div class="form-floating form-floating-outline mb-4">
-                            <textarea class="form-control h-px-150" id="response" placeholder="Berikan respon disini .."
-                                name="response"></textarea>
+                            <textarea class="form-control h-px-150" id="response" placeholder="Berikan respon disini .." name="response"></textarea>
                             <label for="response">Respon</label>
                         </div>
                         {{-- <div class="form-floating form-floating-outline mb-4">

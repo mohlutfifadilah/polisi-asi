@@ -12,6 +12,7 @@ return new class extends Migration {
   {
     Schema::create('aduan', function (Blueprint $table) {
       $table->id();
+      $table->integer('id_aduan')->nullable();
       $table->integer('id_user');
       $table->integer('id_subkategori');
       $table->integer('id_status');
