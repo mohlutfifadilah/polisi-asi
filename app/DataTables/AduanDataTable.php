@@ -38,8 +38,7 @@ class AduanDataTable extends DataTable
                     }
                 })
                 ->addColumn('bukti', function ($aduan) {
-                    $url = asset('aduan/' . $aduan->bukti);
-                    return '<img src=' . $url . ' border="0" width="40" class="img-rounded" align="center" />';
+                    return view('admin.aduan.aduan_bukti', compact('aduan'));
                 })
                 ->setRowId('id')
                 ->rawColumns(['action', 'response']);
@@ -99,8 +98,56 @@ class AduanDataTable extends DataTable
      */
     public function getColumns(): array
     {
-        if (Auth::user()->id_role != 1) {
+        if (Auth::user()->id_role === 1) {
             return [
+                Column::make('users_name')->title('Nama'),
+                // Column::make('users_age')->title('Umur'),
+                // Column::make('users_job_or_position')->title('Jabatan/Pekerjaan'),
+                Column::make('subkategori_name')->title('Kategori'),
+                Column::make('aduan')->title('Aduan'),
+                Column::computed('bukti')
+                    ->title('Bukti')
+                    ->orderable(false)
+                    ->searchable(false)
+                    ->exportable(false)
+                    ->printable(false)
+                    ->width(60)
+                    ->addClass('text-center'),
+                Column::computed('status')
+                    ->title('Status')
+                    ->orderable(false)
+                    ->searchable(false)
+                    ->exportable(false)
+                    ->printable(false)
+                    ->width(60)
+                    ->addClass('text-center'),
+            ];
+        } else if (Auth::user()->id_role === 2){
+          return [
+                Column::make('users_name')->title('Nama'),
+                // Column::make('users_age')->title('Umur'),
+                // Column::make('users_job_or_position')->title('Jabatan/Pekerjaan'),
+                Column::make('subkategori_name')->title('Kategori'),
+                Column::make('aduan')->title('Aduan'),
+                Column::computed('bukti')
+                    ->title('Bukti')
+                    ->orderable(false)
+                    ->searchable(false)
+                    ->exportable(false)
+                    ->printable(false)
+                    ->width(60)
+                    ->addClass('text-center'),
+                Column::computed('action')
+                    ->title('Disposisi')
+                    ->orderable(false)
+                    ->searchable(false)
+                    ->exportable(false)
+                    ->printable(false)
+                    ->width(60)
+                    ->addClass('text-center')
+            ];
+        }else if(Auth::user()->id_role === 3 || Auth::user()->id_role === 4){
+          return [
                 Column::make('users_name')->title('Nama'),
                 // Column::make('users_age')->title('Umur'),
                 // Column::make('users_job_or_position')->title('Jabatan/Pekerjaan'),
@@ -124,30 +171,6 @@ class AduanDataTable extends DataTable
                     ->addClass('text-center'),
                 Column::computed('response')
                     ->title('Aksi')
-                    ->orderable(false)
-                    ->searchable(false)
-                    ->exportable(false)
-                    ->printable(false)
-                    ->width(60)
-                    ->addClass('text-center'),
-            ];
-        } else {
-            return [
-                Column::make('users_name')->title('Nama'),
-                // Column::make('users_age')->title('Umur'),
-                // Column::make('users_job_or_position')->title('Jabatan/Pekerjaan'),
-                Column::make('subkategori_name')->title('Kategori'),
-                Column::make('aduan')->title('Aduan'),
-                Column::computed('bukti')
-                    ->title('Bukti')
-                    ->orderable(false)
-                    ->searchable(false)
-                    ->exportable(false)
-                    ->printable(false)
-                    ->width(60)
-                    ->addClass('text-center'),
-                Column::computed('status')
-                    ->title('Status')
                     ->orderable(false)
                     ->searchable(false)
                     ->exportable(false)

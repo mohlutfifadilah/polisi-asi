@@ -30,16 +30,23 @@ class DatabaseSeeder extends Seeder
       'is_active' => true,
     ]);
     \App\Models\User::create([
+      'id_role' => 2,
+      'name' => 'Sekretaris 1',
+      'email' => 'sekretaris1@gmail.com',
+      'password' => Hash::make('12345678'),
+      'is_active' => true,
+    ]);
+    \App\Models\User::create([
       'id_role' => 3,
-      'name' => 'admin bid. pemberdayaan potensi',
-      'email' => 'admin1@gmail.com',
+      'name' => 'PPSKS',
+      'email' => 'ppsks@gmail.com',
       'password' => Hash::make('12345678'),
       'is_active' => true,
     ]);
     \App\Models\User::create([
       'id_role' => 4,
-      'name' => 'admin bid. pelayanan penyandang',
-      'email' => 'admin2@gmail.com',
+      'name' => 'PPMKS',
+      'email' => 'ppmks@gmail.com',
       'password' => Hash::make('12345678'),
       'is_active' => true,
     ]);
@@ -47,6 +54,13 @@ class DatabaseSeeder extends Seeder
       'id_role' => 5,
       'name' => 'member',
       'email' => 'member@gmail.com',
+      'password' => Hash::make('12345678'),
+      'is_active' => true,
+    ]);
+    \App\Models\User::create([
+      'id_role' => 6,
+      'name' => 'Sekretaris 2',
+      'email' => 'sekretaris2@gmail.com',
       'password' => Hash::make('12345678'),
       'is_active' => true,
     ]);

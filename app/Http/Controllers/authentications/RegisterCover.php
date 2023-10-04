@@ -28,11 +28,13 @@ class RegisterCover extends Controller
                 'email' => 'required',
                 'no_wa' => 'required',
                 'password' => 'required',
+                'address' => 'required',
             ],
             [
                 'name.required' => 'Nama tidak boleh kosong',
                 'email.required' => 'Email tidak boleh kosong',
                 'No Handphone.required' => 'No Handphone tidak boleh kosong',
+                'address.required' => 'Alamat tidak boleh kosong',
                 'password.required' => 'Password tidak boleh kosong',
             ],
         );
@@ -75,6 +77,7 @@ class RegisterCover extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'no_wa' => $request->no_wa,
+            'address' => $request->address,
             'password' => Hash::make($request->password),
             'id_role' => 5,
         ]);
