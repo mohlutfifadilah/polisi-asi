@@ -69,12 +69,14 @@ class AduanDataTable extends DataTable
                 ->leftJoin('subkategori', 'subkategori.id', '=', 'aduan.id_subkategori')
                 ->where('aduan.id_role', $userIdRole)
                 ->where('aduan.id_status', 0)
-                ->select('users.name AS users_name', 'users.age AS users_age', 'users.job_or_position AS users_job_or_position', 'aduan.bukti', 'subkategori.name AS subkategori_name', 'aduan.aduan');
+                ->select('users.name AS users_name', 'users.age AS users_age', 'users.job_or_position AS users_job_or_position', 'aduan.bukti', 'subkategori.name AS subkategori_name', 'aduan.aduan')
+                ->limit(1);
         } else {
             return $model
                 ->leftJoin('users', 'users.id', '=', 'aduan.id_user')
                 ->leftJoin('subkategori', 'subkategori.id', '=', 'aduan.id_subkategori')
-                ->select('users.name AS users_name', 'aduan.id_role', 'users.age AS users_age', 'users.job_or_position AS users_job_or_position', 'aduan.bukti', 'subkategori.name AS subkategori_name', 'aduan.aduan');
+                ->select('users.name AS users_name', 'aduan.id_role', 'users.age AS users_age', 'users.job_or_position AS users_job_or_position', 'aduan.bukti', 'subkategori.name AS subkategori_name', 'aduan.aduan')
+                ->limit(1);
         }
     }
 

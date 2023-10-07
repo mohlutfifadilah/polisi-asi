@@ -62,27 +62,38 @@ class AduanController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        // $validator = Validator::make($request->all(), [
-        //   'aduan' => 'required',
-        // ], [
-        //   'aduan.required' => 'Aduan tidak boleh kosong',
-        // ]);
+        if ($request->has('id_status')) {
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    'aduan' => 'required',
+                ],
+                [
+                    'aduan.required' => 'Aduan tidak boleh kosong',
+                ],
+            );
 
-        // if ($validator->fails()) {
-        //   Alert::error('Kesalahan', $validator->errors()->first());
-        //   return redirect()->back()->withErrors($validator)->withInput();
-        // }
+            if ($validator->fails()) {
+                Alert::error('Kesalahan', $validator->errors()->first());
+                return redirect()
+                    ->back()
+                    ->withErrors($validator)
+                    ->withInput();
+            }
 
-        Aduan::create([
-            'id_user' => $request->id_user,
-            'id_subkategori' => $request->id_kategori,
-            'id_status' => false,
-            'aduan' => $request->aduan,
-        ]);
+            Aduan::create([
+                'id_aduan' => $request->id_aduan,
+                'id_user' => $request->id_user,
+                'id_subkategori' => $request->id_subkategori,
+                'id_status' => $request->id_status,
+                'id_role' => $request->id_role,
+                'bukti' => $request->bukti,
+                'aduan' => $request->aduan,
+            ]);
 
-        // Alert::success('Berhasil', 'Data Desa berhasil ditambah');
-        return redirect('/');
+            Alert::success('Berhasil', 'Jawaban telah dikirim');
+            return redirect('/');
+        }
     }
 
     /**
@@ -99,8 +110,15 @@ class AduanController extends Controller
     public function edit(string $id)
     {
         //
-        $aduan = Aduan::find($id);
-        return view('admin.aduan.aduan_response_answer', compact('aduan'));
+        $selectedAduan = Aduan::find($id);
+        $aduan = Aduan::where('id', $selectedAduan->id_aduan)
+            ->orWhere('id', $id)
+            ->orWhere('bukti', $selectedAduan->bukti)
+            ->orderBy('created_at', 'ASC')
+            ->get();
+
+        $user = User::find($selectedAduan->id_user);
+        return view('admin.aduan.aduan_response_answer', compact('aduan', 'user', 'selectedAduan'));
     }
 
     /**
@@ -131,7 +149,6 @@ class AduanController extends Controller
         $user = User::find($aduan->id_user);
         $aduan->update([
             'id_status' => 1,
-            'id_role' => $user->id_role,
             'response' => $request->response,
             // 'is_publish' => false
         ]);

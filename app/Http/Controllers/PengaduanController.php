@@ -44,25 +44,25 @@ class PengaduanController extends Controller
     {
         //
         $validator = Validator::make(
-            $request->all(),
-            [
-                'id_kategori' => 'required',
-                'aduan' => 'required',
-                'bukti' => 'required|image|file',
-            ],
-            [
-                'id_kategori.required' => 'Kategori tidak boleh kosong',
-                'aduan.required' => 'Aduan tidak boleh kosong',
-                'bukti.mimes' => 'Format file harus jpg/jpeg atau png.',
-            ],
+          $request->all(),
+          [
+            'id_kategori' => 'required',
+            'aduan' => 'required',
+            'bukti' => 'max:2048',
+          ],
+          [
+            'id_kategori.required' => 'Kategori tidak boleh kosong',
+            'aduan.required' => 'Aduan tidak boleh kosong',
+            'bukti.max' => 'File jangan lebih dari 2 mb'
+          ],
         );
 
         if ($validator->fails()) {
-            Alert::error('Kesalahan', $validator->errors()->first());
-            return redirect()
-                ->back()
-                ->withErrors($validator)
-                ->withInput();
+          Alert::error('Kesalahan', $validator->errors()->first());
+          return redirect()
+          ->back()
+          ->withErrors($validator)
+          ->withInput();
         }
 
         $user = User::find(Auth::user()->id);
@@ -88,7 +88,7 @@ class PengaduanController extends Controller
             $message->subject('Aduan telah di submit');
         });
 
-        Alert::success('Berhasil', 'Aduan berhasil dilaporkan <br> Tunggu respon dari Dinas');
+        Alert::success('Berhasil', 'Aduan berhasil dilaporkan, Tunggu respon dari Dinas');
         return redirect('/');
     }
 

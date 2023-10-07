@@ -24,9 +24,6 @@
 @endsection
 
 @section('content')
-    @php
-        $user = \App\Models\User::find($aduan->id_user);
-    @endphp
     <!-- Users List Table -->
     <div class="card">
         <div class="card-header p-4">
@@ -34,7 +31,9 @@
         </div>
         <div class="card-body p-4">
             <dl class="row">
-                <dt class="col-sm-6"><h5>Data Pengadu :</h5></dt>
+                <dt class="col-sm-6">
+                    <h5>Data Pengadu :</h5>
+                </dt>
                 <dd class="col-sm-6 mb-5"></dd>
 
                 <dt class="col-sm-3">Nama</dt>
@@ -57,23 +56,30 @@
 
                 <dt class="col-sm-3">Bukti Aduan</dt>
                 <dd class="col-sm-9">
-                  <img src="{{ asset('/storage/aduan/' . $aduan->bukti) }}" class="img-fluid d-block" alt="" width="250" height="250">
+                    <img src="{{ asset('/storage/aduan/' . $selectedAduan->bukti) }}" class="img-fluid d-block" alt=""
+                        width="250" height="250">
                 </dd>
             </dl>
             <h5 class="mb-4">Aduan :</h5>
-            <ul class="timeline card-timeline mb-4">
-                <li class="timeline-item timeline-item-transparent">
-                    <span class="timeline-point timeline-point-info"></span>
-                    <div class="timeline-event">
-                        <div class="timeline-header mb-1">
-                            <h6 class="mb-2 fw-semibold">{{ $user->name }}</h6>
-                            <small
-                                class="text-muted">{{ \Carbon\Carbon::parse($aduan->created_at)->locale('id')->isoFormat('dddd, D MMMM YYYY HH:mm:ss') }}</small>
+            @foreach ($aduan as $aduan)
+                <ul class="timeline card-timeline mb-4">
+                    <li class="timeline-item timeline-item-transparent">
+                        <span class="timeline-point timeline-point-info"></span>
+                        <div class="timeline-event">
+                            <div class="timeline-header mb-1">
+                                <h6 class="mb-2 fw-semibold">{{ $aduan->aduan }}</h6>
+                                <small
+                                    class="text-muted">{{ \Carbon\Carbon::parse($aduan->created_at)->locale('id')->isoFormat('dddd, D MMMM YYYY HH:mm:ss') }}</small>
+                            </div>
+                            <p class="text-muted mb-2">@if (!is_null($aduan->response))
+                              {{ $aduan->response }}
+                              @else
+                              <span class="badge rounded-pill bg-danger">Belum direspon</span>
+                            @endif</p>
                         </div>
-                        <p class="text-muted mb-2">{{ $aduan->aduan }}</p>
-                    </div>
-                </li>
-            </ul>
+                    </li>
+                </ul>
+            @endforeach
             <form action="{{ route('aduan.update', $aduan->id) }}" method="post">
                 @csrf
                 @method('PUT')

@@ -23,7 +23,9 @@ class HistoryDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'history.action')
+            ->addColumn('action', function ($aduan) {
+                    return view('admin.history.history_action', compact('aduan'));
+                })
             ->setRowId('id');
     }
 
@@ -35,7 +37,8 @@ class HistoryDataTable extends DataTable
         return $model
             ->leftJoin('users', 'users.id', '=', 'aduan.id_user')
             ->leftJoin('subkategori', 'subkategori.id', '=', 'aduan.id_subkategori')
-            ->select('users.name AS users_name', 'users.age AS users_age', 'users.job_or_position AS users_job_or_position', 'subkategori.name AS subkategori_name', 'aduan.aduan', 'aduan.response');
+            ->select('users.name AS users_name', 'subkategori.name AS subkategori_name', 'aduan.aduan', 'aduan.response')
+            ->where('aduan.id_aduan', null);
     }
 
     /**
@@ -64,11 +67,17 @@ class HistoryDataTable extends DataTable
     {
         return [
             Column::make('users_name')->title('Nama'),
-            Column::make('users_age')->title('Umur'),
-            Column::make('users_job_or_position')->title('Jabatan/Pekerjaan'),
             Column::make('subkategori_name')->title('Kategori'),
             Column::make('aduan')->title('Aduan'),
             Column::make('response')->title('Respon'),
+            Column::computed('action')
+                    ->title('Publish')
+                    ->orderable(false)
+                    ->searchable(false)
+                    ->exportable(false)
+                    ->printable(false)
+                    ->width(60)
+                    ->addClass('text-center')
         ];
     }
 
