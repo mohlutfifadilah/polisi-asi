@@ -38,7 +38,9 @@ class HistoryDataTable extends DataTable
             ->leftJoin('users', 'users.id', '=', 'aduan.id_user')
             ->leftJoin('subkategori', 'subkategori.id', '=', 'aduan.id_subkategori')
             ->select('users.name AS users_name', 'subkategori.name AS subkategori_name', 'aduan.aduan', 'aduan.response')
-            ->where('aduan.id_aduan', null);
+            ->where('aduan.id_status', 1)
+            ->where('aduan.id_aduan', null)
+            ->orWhere('aduan.id_aduan', 0);
     }
 
     /**

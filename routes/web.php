@@ -269,17 +269,22 @@ Route::post('/admin/aduan/{id}/update-role', function (Request $request, $id) {
     $aduan->id_role = $request->input('id_role');
     $aduan->save();
 
+    Alert::success('Berhasil', 'Aduan telah terdisposisi');
     return redirect()->route('aduan.index');
 });
 
-Route::post('/admin/history/{id}/update-publish', function (Request $request, $id) {
-    dd('masuk');
+Route::post('/admin/history/{id}/update-publish', function ($id) {
     // Cari pengguna berdasarkan ID
     $aduan = Aduan::find($id);
-
+    if ($aduan->is_publish === 0 || $aduan->is_publish === null){
+      $is_publish = 1;
+    } else {
+      $is_publish = 0;
+    }
     // Update id_role pengguna dengan nilai yang baru
-    $aduan->is_publish = $request->input('is_publish');
+    $aduan->is_publish = $is_publish;
     $aduan->save();
 
-    return redirect()->route('aduan.index');
+    Alert::success('Berhasil', 'Status publish telah diubah');
+    return redirect()->route('history.index');
 })->name('update_publish');
