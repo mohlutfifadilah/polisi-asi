@@ -10,16 +10,16 @@
             "icon": "menu-icon tf-icons mdi mdi-card-account-details-outline",
             "slug": "profil",
             "submenu": [{
-                    "url": "profil/pimpinan",
-                    "name": "Profil Pimpinan",
+                    "url": "profil/sambutan",
+                    "name": "Sambutan Kepala Dinas",
                     "icon": "menu-icon tf-icons mdi mdi-account-search-outline",
-                    "slug": "pimpinan"
+                    "slug": "sambutan"
                 },
                 {
-                    "url": "profil/vertical",
-                    "name": "Vertical",
+                    "url": "profil/struktur",
+                    "name": "Struktur Organisasi",
                     "icon": "menu-icon tf-icons mdi mdi-dock-left",
-                    "slug": "vertical",
+                    "slug": "struktur",
                     "target": "_blank"
                 },
                 {
@@ -912,39 +912,6 @@
                     "name": "Kontak Aduan",
                     "icon": "menu-icon tf-icons mdi mdi-account-box",
                     "slug": "kontak-aduan"
-                }
-            ]
-        },
-        {
-            "name": "Charts & Maps",
-            "icon": "menu-icon tf-icons mdi mdi-chart-donut",
-            "slug": [
-                "charts",
-                "maps"
-            ],
-            "submenu": [{
-                    "name": "Charts",
-                    "icon": "menu-icon tf-icons mdi mdi-chart-line",
-                    "slug": "charts",
-                    "submenu": [{
-                            "url": "charts/apex",
-                            "name": "Apex Charts",
-                            "icon": "menu-icon tf-icons mdi mdi-circle-medium",
-                            "slug": "charts-apex"
-                        },
-                        {
-                            "url": "charts/chartjs",
-                            "name": "ChartJS",
-                            "icon": "menu-icon tf-icons mdi mdi-circle-medium",
-                            "slug": "charts-chartjs"
-                        }
-                    ]
-                },
-                {
-                    "url": "maps/leaflet",
-                    "name": "Leaflet Maps",
-                    "icon": "menu-icon tf-icons mdi mdi-map-outline",
-                    "slug": "maps-leaflet"
                 }
             ]
         }

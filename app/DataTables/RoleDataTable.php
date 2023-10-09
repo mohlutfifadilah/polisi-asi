@@ -22,7 +22,10 @@ class RoleDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'role.action')
+            ->addColumn('action', function($role) {
+              return view('admin.role.role_action', compact('role'));
+            })
+            ->rawColumns(['action'])
             ->setRowId('id');
     }
 
@@ -31,7 +34,7 @@ class RoleDataTable extends DataTable
      */
     public function query(Role $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->select('id', 'name');
     }
 
     /**
@@ -43,16 +46,13 @@ class RoleDataTable extends DataTable
                     ->setTableId('role-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    //->dom('Bfrtip')
+                    ->dom('B<"row"<"col-6"l><"col-6"f>>rtip')
                     ->orderBy(1)
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),
-                        Button::make('csv'),
                         Button::make('pdf'),
                         Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
                     ]);
     }
 
@@ -62,15 +62,14 @@ class RoleDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
+          Column::make('name')->title('Nama Role'),
+          Column::computed('action')
+                  ->title('Aksi')->orderable(false)
+                  ->searchable(false)
                   ->exportable(false)
                   ->printable(false)
                   ->width(60)
                   ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
         ];
     }
 
