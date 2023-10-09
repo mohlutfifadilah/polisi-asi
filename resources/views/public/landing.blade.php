@@ -127,16 +127,18 @@
                                     aria-label="Slide 3"></button>
                             </div>
                             <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="{{ asset('assets/img/illustrations/illustration-john-' . $configData['style'] . '.png') }}"
+                                @foreach ($carousel as $key => $c)
+                                  <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                                    <img src="{{ asset('storage/carousel/' . $c->url) }}"
                                         class="d-block w-100" alt="..." height="415">
-                                    <div class="carousel-caption d-none d-md-block">
+                                    {{-- <div class="carousel-caption d-none d-md-block">
                                         <h5>First slide label</h5>
                                         <p>Some representative placeholder content for the first slide.</p>
-                                    </div>
+                                    </div> --}}
                                 </div>
-                                <div class="carousel-item">
-                                    <img src="{{ asset('assets/img/illustrations/illustration-john-' . $configData['style'] . '.png') }}"
+                                @endforeach
+                                {{-- <div class="carousel-item">
+                                    <img src="{{ asset('storage/carousel/1.jpeg') }}"
                                         class="d-block w-100" alt="..." height="415">
                                     <div class="carousel-caption d-none d-md-block">
                                         <h5>Second slide label</h5>
@@ -144,13 +146,13 @@
                                     </div>
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="{{ asset('assets/img/illustrations/illustration-john-' . $configData['style'] . '.png') }}"
+                                    <img src="{{ asset('storage/carousel/1.jpeg') }}"
                                         class="d-block w-100" alt="..." height="415">
                                     <div class="carousel-caption d-none d-md-block">
                                         <h5>Third slide label</h5>
                                         <p>Some representative placeholder content for the third slide.</p>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
                                 data-bs-slide="prev">
