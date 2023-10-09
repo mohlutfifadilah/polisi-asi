@@ -15,11 +15,11 @@ class KategoriSeeder extends Seeder
   {
     //
     Kategori::create([
-      'name' => 'Bidang Pemberdayaan Potensi Sumber Kesejahteraan Sosial',
+      'name' => 'PPSKS',
     ]);
 
     Kategori::create([
-      'name' => 'Bidang Pelayanan Penyandang Masalah Kesejahteraan Sosial',
+      'name' => 'PPMKS',
     ]);
   }
 }

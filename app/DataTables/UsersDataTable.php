@@ -35,7 +35,7 @@ class UsersDataTable extends DataTable
                 $role = Role::find($user->id_role);
                 return view('admin.users.user_role', compact('role'));
             })
-            ->rawColumns(['user_info', 'action']);;
+            ->rawColumns(['user_info', 'action']);
     }
 
     /**
