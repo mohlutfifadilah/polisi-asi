@@ -1,6 +1,6 @@
 @extends('admin/template/master')
 
-@section('title', 'Data Kategori')
+@section('title', 'Data Carousel')
 
 @section('vendor-style')
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
@@ -27,33 +27,20 @@
     <!-- Users List Table -->
     <div class="card">
         <div class="card-header p-4">
-            <h5 class="card-title">Edit Data Kategori</h5>
+            <h5 class="card-title">Edit Data Carousel</h5>
         </div>
         <div class="card-body p-4">
-            <form action="{{ route('kategori.update', $subkategori->id) }}" method="post">
+            <form action="{{ route('carousel.update', $carousel->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                @php
-                  $id = App\Models\Kategori::find($subkategori->id_kategori);
-                @endphp
                 <div class="row">
                     <div class="col-12">
                         <div class="form-floating form-floating-outline mb-4">
-                            <select id="bidang" class="select2 form-select" name="bidang">
-                                <option value="{{ $id->id }}" selected disabled>{{ $id->name }}</option>
-                                @foreach ($kategori as $k)
-                                    <option value="{{ $k->id }}">{{ $k->name }}</option>
-                                @endforeach
-                            </select>
-                            <label for="country">Bidang</label>
-                        </div>
-                        <div class="form-floating form-floating-outline mb-4">
-                            <input type="text" class="form-control" id="name" placeholder="Isi Kategori" name="name"
-                                aria-label="Isi Kategori" value="{{ $subkategori->name }}"/>
-                            <label for="name">Nama Kategori</label>
+                            <input class="form-control" type="file" id="image" name="image">
+                            <label for="image">Upload Image</label>
                         </div>
                         <button type="submit" class="btn btn-warning me-sm-3 me-1 data-submit">Edit</button>
-                        <a href="{{ route('kategori.index') }}" class="btn btn-label-secondary">Batal</a>
+                        <a href="{{ route('carousel.index') }}" class="btn btn-label-secondary">Batal</a>
                         {{-- <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Batal</button> --}}
                     </div>
                 </div>

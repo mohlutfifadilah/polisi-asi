@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Aduan;
 use App\Models\Carousel;
 use App\Models\Subkategori;
-use Illuminate\Http\Request;
 
 class PublicController extends Controller
 {
@@ -15,7 +14,7 @@ class PublicController extends Controller
       $pageConfigs = ['myLayout' => 'horizontal'];
       $aduan = Aduan::select('id_subkategori', 'aduan', 'response', 'created_at')->where('id_status', 1)->where('id_aduan', null)->where('is_publish', 1)->limit(6)->orderBy('created_at', 'ASC')->get();
       $sub = Subkategori::all();
-      $carousel = Carousel::select('url')->limit(3)->get();
+      $carousel = Carousel::all();
       return view('public.landing', [
         'pageConfigs' => $pageConfigs,
         'aduan' => $aduan,
