@@ -106,19 +106,10 @@
             ]
         },
         {
-            "url": "admin/artikel",
-            "name": "Artikel",
+            "url": "admin/pelayanan",
+            "name": "Alur Pelayanan",
             "icon": "menu-icon tf-icons mdi mdi-clipboard-edit-outline",
-            "slug": "artikel",
-            "role": [
-                1
-            ]
-        },
-        {
-            "url": "admin/berita",
-            "name": "Berita",
-            "icon": "menu-icon tf-icons mdi mdi-clipboard-list-outline",
-            "slug": "berita",
+            "slug": "pelayanan",
             "role": [
                 1
             ]

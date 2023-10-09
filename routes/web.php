@@ -8,6 +8,7 @@ use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\KategoriController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\laravel_example\UserManagement;
+use App\Http\Controllers\PelayananController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsersController;
@@ -80,6 +81,7 @@ Route::resource('/admin/aduan', AduanController::class);
 Route::resource('/admin/carousel', CarouselController::class);
 Route::resource('/admin/artikel', ArtikelController::class);
 Route::resource('/admin/berita', BeritaController::class);
+Route::resource('/admin/pelayanan', PelayananController::class);
 Route::get('/get-user/{id}', function ($id) {
     $user = User::find($id);
     if (!$user) {
