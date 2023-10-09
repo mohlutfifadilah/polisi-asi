@@ -121,7 +121,9 @@ Route::resource('/pengaduan/lapor-aduan', PengaduanController::class);
 Route::get('/pengaduan/lapak-aduan', function () {
     $pageConfigs = ['myLayout' => 'horizontal'];
     $aduan = Aduan::where('id_status', 1)
-        ->orderBy('created_at', 'DESC')
+        ->where('id_aduan', null)
+        ->where('is_publish', 1)
+        ->orderBy('created_at', 'ASC')
         ->get();
     return view('public.pengaduan.lapak', [
         'pageConfigs' => $pageConfigs,
@@ -273,7 +275,7 @@ Route::post('/admin/aduan/{id}/update-role', function (Request $request, $id) {
     return redirect()->route('aduan.index');
 });
 
-Route::post('/admin/history/{id}/update-publish', function ($id) {
+Route::post('/admin/history/{id}/update-publish', function (Request $request, $id) {
     // Cari pengguna berdasarkan ID
     $aduan = Aduan::find($id);
     if ($aduan->is_publish === 0 || $aduan->is_publish === null){

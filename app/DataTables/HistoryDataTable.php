@@ -24,9 +24,8 @@ class HistoryDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($aduan) {
-                    return view('admin.history.history_action', compact('aduan'));
-                })
-            ->setRowId('id');
+                return view('admin.history.history_action', compact('aduan'));
+            });
     }
 
     /**
@@ -37,10 +36,9 @@ class HistoryDataTable extends DataTable
         return $model
             ->leftJoin('users', 'users.id', '=', 'aduan.id_user')
             ->leftJoin('subkategori', 'subkategori.id', '=', 'aduan.id_subkategori')
-            ->select('users.name AS users_name', 'subkategori.name AS subkategori_name', 'aduan.aduan', 'aduan.response')
             ->where('aduan.id_status', 1)
             ->where('aduan.id_aduan', null)
-            ->orWhere('aduan.id_aduan', 0);
+            ->select('users.name AS users_name', 'subkategori.name AS subkategori_name', 'aduan.aduan', 'aduan.response', 'aduan.id');
     }
 
     /**
@@ -49,17 +47,13 @@ class HistoryDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('history-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->dom('B<"row"<"col-6"l><"col-6"f>>rtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                    ]);
+            ->setTableId('history-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->dom('B<"row"<"col-6"l><"col-6"f>>rtip')
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->buttons([Button::make('excel'), Button::make('pdf'), Button::make('print')]);
     }
 
     /**
@@ -73,13 +67,13 @@ class HistoryDataTable extends DataTable
             Column::make('aduan')->title('Aduan'),
             Column::make('response')->title('Respon'),
             Column::computed('action')
-                    ->title('Publish')
-                    ->orderable(false)
-                    ->searchable(false)
-                    ->exportable(false)
-                    ->printable(false)
-                    ->width(60)
-                    ->addClass('text-center')
+                ->title('Publish')
+                ->orderable(false)
+                ->searchable(false)
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center'),
         ];
     }
 

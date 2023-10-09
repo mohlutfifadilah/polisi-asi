@@ -190,7 +190,8 @@
                                     <div class="me-2">
                                         <h6 class="mb-0">{{ $subkategori->name }}</h6>
                                         {{-- <small class="text-muted">{{ \Illuminate\Support\Str::limit($a->aduan, 50) }}</small> --}}
-                                        <small class="text-muted">{{ $a->aduan }}</small>
+                                        <p class="text-justify mb-0 mt-2">{{ $a->aduan }}</p>
+                                        <small class="text-muted">{{ $a->response }}</small>
                                         <br>
                                         <div class="badge bg-label-primary rounded-pill mt-3">
                                             {{ waktuLalu(strtotime($a->created_at)) }}</div>

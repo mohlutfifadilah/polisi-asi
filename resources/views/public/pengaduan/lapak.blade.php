@@ -61,7 +61,7 @@
                             <hr class="my-3">
                         </div>
                         <div class="card-body pb-1">
-                            <ul class="timeline card-timeline mb-4">
+                            <ul class="timeline card-timeline mb-3">
                                 @foreach ($aduan as $a)
                                     <li class="timeline-item timeline-item-transparent">
                                         <span class="timeline-point timeline-point-danger"></span>
@@ -72,8 +72,9 @@
                                             <div class="timeline-header mb-1">
                                                 <h6 class="mb-2 fw-semibold">{{ $subkategori->name }}</h6>
                                                 <small class="text-muted">{{ waktuLalu(strtotime($a->created_at)) }}</small>
-                                            </div>
-                                            <p class="text-muted mb-2">{{ $a->aduan }}</p>
+                                              </div>
+                                              <p class="text-justify mb-1 mt-2">{{ $a->aduan }}</p>
+                                            <p class="text-muted mb-2">{{ $a->response }}</p>
                                         </div>
                                     </li>
                                 @endforeach
