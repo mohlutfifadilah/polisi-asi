@@ -128,14 +128,14 @@
                             </div>
                             <div class="carousel-inner">
                                 @foreach ($carousel as $key => $c)
-                                  <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
-                                    <img src="{{ asset('storage/carousel/' . $c->url) }}"
-                                        class="d-block w-100" alt="..." height="415">
-                                    {{-- <div class="carousel-caption d-none d-md-block">
+                                    <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                                        <img src="{{ asset('storage/carousel/' . $c->url) }}" class="d-block w-100"
+                                            alt="..." height="415">
+                                        {{-- <div class="carousel-caption d-none d-md-block">
                                         <h5>First slide label</h5>
                                         <p>Some representative placeholder content for the first slide.</p>
                                     </div> --}}
-                                </div>
+                                    </div>
                                 @endforeach
                                 {{-- <div class="carousel-item">
                                     <img src="{{ asset('storage/carousel/1.jpeg') }}"
@@ -232,45 +232,25 @@
         <!-- Total Transactions & Report Chart -->
         <div class="col-12 col-xl-12">
             <div class="card bg-primary">
-              <div class="card-header">
-                <h2 class="text-center text-white">Alur Pelayanan</h2>
-              </div>
+                <div class="card-header">
+                    <h2 class="text-center text-white">Alur Pelayanan</h2>
+                </div>
                 <div class="card-body px-5">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="carousel-kategori">
-                                <div>
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h3><img src="{{ asset('assets/img/illustrations/illustration-john-' . $configData['style'] . '.png') }}"
-                                                    class="d-block w-100" alt="..." height="300"></h3>
+                                @foreach ($pelayanan as $p)
+                                    <div>
+                                        <div class="card">
+                                            <a href="{{ $p->url }}" target="_blank" rel="noopener noreferrer">
+                                                <div class="card-body">
+                                                    <h3><img src="{{ asset('storage/pelayanan/' . $p->image) }}"
+                                                            class="d-block w-100" alt="..." height="300" width="250"></h3>
+                                                </div>
+                                            </a>
                                         </div>
                                     </div>
-                                </div>
-                                <div>
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h3><img src="{{ asset('assets/img/illustrations/illustration-john-' . $configData['style'] . '.png') }}"
-                                                    class="d-block w-100" alt="..." height="300"></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h3><img src="{{ asset('assets/img/illustrations/illustration-john-' . $configData['style'] . '.png') }}"
-                                                    class="d-block w-100" alt="..." height="300"></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h3><img src="{{ asset('assets/img/illustrations/illustration-john-' . $configData['style'] . '.png') }}"
-                                                    class="d-block w-100" alt="..." height="300"></h3>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
