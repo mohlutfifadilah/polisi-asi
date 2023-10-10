@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('pelayanan', function (Blueprint $table) {
             $table->id();
+            $table->string('id_subkategori');
             $table->string('image');
             $table->string('url')->nullable();
             $table->timestamps();

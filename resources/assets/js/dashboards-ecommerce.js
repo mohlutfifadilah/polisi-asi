@@ -27,58 +27,71 @@
 
   // Sales This Month
   // --------------------------------------------------------------------
-  const saleThisMonthChartEl = document.querySelector('#saleThisMonth'),
-    saleThisMonthChartConfig = {
-      chart: {
-        height: 97,
-        type: 'line',
-        parentHeightOffset: 0,
-        toolbar: { show: false },
-        dropShadow: {
-          top: 14,
-          blur: 4,
-          left: 0,
-          enabled: true,
-          opacity: 0.12,
-          color: config.colors.primary
-        }
-      },
+  $.ajax({
+    url: '/get-monthly-data', // Sesuaikan dengan rute yang telah Anda buat
+    method: 'GET',
+    dataType: 'json',
+    success: function (response) {
+      var monthlyData = response.monthlyData;
+      console.log(monthlyData);
+      // Lakukan sesuatu dengan data yang diterima, seperti membuat grafik
+      const saleThisMonthChartEl = document.querySelector('#saleThisMonth'),
+        saleThisMonthChartConfig = {
+          chart: {
+            height: 97,
+            type: 'line',
+            parentHeightOffset: 0,
+            toolbar: { show: false },
+            dropShadow: {
+              top: 14,
+              blur: 4,
+              left: 0,
+              enabled: true,
+              opacity: 0.12,
+              color: config.colors.primary
+            }
+          },
 
-      tooltip: { enabled: false },
-      grid: {
-        xaxis: { lines: { show: false } },
-        yaxis: { lines: { show: false } },
-        padding: {
-          top: -12,
-          left: -2,
-          right: 8,
-          bottom: -10
-        }
-      },
-      colors: [config.colors.primary],
-      stroke: {
-        width: 5,
-        lineCap: 'round'
-      },
-      series: [
-        {
-          data: [200, 200, 500, 500, 300, 300, 100, 100, 450, 450, 650, 650]
-        }
-      ],
-      xaxis: {
-        labels: { show: false },
-        axisTicks: { show: false },
-        axisBorder: { show: false }
-      },
-      yaxis: {
-        min: 0,
-        labels: { show: false }
+          tooltip: { enabled: false },
+          grid: {
+            xaxis: { lines: { show: false } },
+            yaxis: { lines: { show: false } },
+            padding: {
+              top: -12,
+              left: -2,
+              right: 8,
+              bottom: -10
+            }
+          },
+          colors: [config.colors.primary],
+          stroke: {
+            width: 5,
+            lineCap: 'round'
+          },
+          series: [
+            {
+              data: monthlyData
+            }
+          ],
+          xaxis: {
+            labels: { show: false },
+            axisTicks: { show: false },
+            axisBorder: { show: false }
+          },
+          yaxis: {
+            min: 0,
+            labels: { show: false }
+          }
+        };
+      if (typeof saleThisMonthChartEl !== undefined && saleThisMonthChartEl !== null) {
+        const saleThisMonthChart = new ApexCharts(saleThisMonthChartEl, saleThisMonthChartConfig);
+        saleThisMonthChart.render();
       }
-    };
-  if (typeof saleThisMonthChartEl !== undefined && saleThisMonthChartEl !== null) {
-    const saleThisMonthChart = new ApexCharts(saleThisMonthChartEl, saleThisMonthChartConfig);
-    saleThisMonthChart.render();
-  }
+    },
+    error: function (error) {
+      console.error(error);
+    }
+  });
   // Total Impression & Order Chart
   // --------------------------------------------------------------------
 

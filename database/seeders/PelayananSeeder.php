@@ -16,6 +16,7 @@ class PelayananSeeder extends Seeder
         //
         for($i=1;$i<=24;$i++){
           Pelayanan::create([
+            'id_subkategori' => $i,
             'image' => $i . '.jpeg',
             'url' => ''
           ]);

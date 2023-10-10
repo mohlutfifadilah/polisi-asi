@@ -52,6 +52,12 @@ Route::get('/dashboard/ecommerce', $controller_path . '\dashboard\Ecommerce@inde
 // locale
 Route::get('lang/{locale}', $controller_path . '\language\LanguageController@swap');
 
+Route::get('/get-monthly-data', function() {
+  $monthlyData = Aduan::monthlyData()->get();
+
+    return response()->json(['monthlyData' => $monthlyData]);
+});
+
 // layout
 Route::get('/layouts/collapsed-menu', $controller_path . '\layouts\CollapsedMenu@index')->name('layouts-collapsed-menu');
 Route::get('/layouts/content-navbar', $controller_path . '\layouts\ContentNavbar@index')->name('layouts-content-navbar');
