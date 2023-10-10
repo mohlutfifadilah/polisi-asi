@@ -89,7 +89,12 @@ Route::get('/get-user/{id}', function ($id) {
     }
     return response()->json(['user' => $user]);
 });
+// Route::get('/user/profile', $controller_path . '\ProfileController@index');
 Route::get('/profile', $controller_path . '\ProfileController@index');
+Route::get('/profile/edit', $controller_path . '\ProfileController@edit');
+Route::post('/profile/update/{id}', $controller_path . '\ProfileController@update');
+Route::get('/profile/changePassword', $controller_path . '\ProfileController@changePassword');
+Route::post('/profile/updatePassword/{id}', $controller_path . '\ProfileController@updatePassword');
 Route::get('/app/user/list', $controller_path . '\apps\UserList@index')->name('app-user-list');
 Route::get('/app/user/view/account', $controller_path . '\apps\UserViewAccount@index')->name('app-user-view-account');
 Route::get('/app/user/view/security', $controller_path . '\apps\UserViewSecurity@index')->name('app-user-view-security');
@@ -100,7 +105,7 @@ Route::get('/app/access-roles', $controller_path . '\apps\AccessRoles@index')->n
 Route::get('/app/access-permission', $controller_path . '\apps\AccessPermission@index')->name('app-access-permission');
 
 // pages
-Route::get('/pages/profile-user', $controller_path . '\pages\UserProfile@index')->name('pages-profile-user');
+Route::get('/pages/profile-user', $controller_path . '\ProfileController@index')->name('pages-profile-user');
 Route::get('/pages/profile-teams', $controller_path . '\pages\UserTeams@index')->name('pages-profile-teams');
 Route::get('/pages/profile-projects', $controller_path . '\pages\UserProjects@index')->name('pages-profile-projects');
 Route::get('/pages/profile-connections', $controller_path . '\pages\UserConnections@index')->name('pages-profile-connections');

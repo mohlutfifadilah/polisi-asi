@@ -19,6 +19,7 @@ class PengaduanController extends Controller
     public function index()
     {
         if (!Auth::check()) {
+          Alert::warning('Peringatan', 'Login terlebih dahulu');
             return redirect()->back();
         }
         $pageConfigs = ['myLayout' => 'horizontal'];

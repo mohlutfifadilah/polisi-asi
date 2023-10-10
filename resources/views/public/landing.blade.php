@@ -26,27 +26,6 @@
 @endsection
 
 @section('content')
-    @php
-        function waktuLalu($timestamp)
-        {
-            $selisih = time() - $timestamp;
-            if ($selisih < 60) {
-                return $selisih . ' detik yang lalu';
-            } elseif ($selisih < 3600) {
-                return round($selisih / 60) . ' menit yang lalu';
-            } elseif ($selisih < 86400) {
-                return round($selisih / 3600) . ' jam yang lalu';
-            } elseif ($selisih < 2592000) {
-                // kurang dari 30 hari (sekitar 1 bulan)
-                return round($selisih / 86400) . ' hari yang lalu';
-            } elseif ($selisih < 31536000) {
-                // kurang dari 365 hari (sekitar 1 tahun)
-                return round($selisih / 2592000) . ' bulan yang lalu';
-            } else {
-                return round($selisih / 31536000) . ' tahun yang lalu';
-            }
-        }
-    @endphp
     <div class="row gy-4">
         {{-- <!-- Gamification Card -->
   <div class="col-md-12 col-lg-8">
@@ -245,7 +224,7 @@
                                             <a href="{{ $p->url }}" target="_blank" rel="noopener noreferrer">
                                                 <div class="card-body">
                                                     <h3><img src="{{ asset('storage/pelayanan/' . $p->image) }}"
-                                                            class="d-block w-100" alt="..." height="300" width="250"></h3>
+                                                            class="d-block w-100" alt="..." height="200" width="150"></h3>
                                                 </div>
                                             </a>
                                         </div>
@@ -906,7 +885,7 @@
             $('.carousel-kategori').slick({
                 centerMode: true,
                 centerPadding: '60px',
-                slidesToShow: 3,
+                slidesToShow: 6,
             });
         });
     </script>

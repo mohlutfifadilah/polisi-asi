@@ -56,7 +56,7 @@ $navbarDetached = ($navbarDetached ?? '');
           @endif
           <ul class="dropdown-menu dropdown-menu-end">
             <li>
-              <a class="dropdown-item" href="{{ Route::has('profile.show') ? route('profile.show') : url('pages/profile-user') }}">
+              <a class="dropdown-item" href="{{ route('profile.show') }}">
                 <div class="d-flex">
                   <div class="flex-shrink-0 me-3">
                     <div class="avatar avatar-online">
@@ -83,9 +83,9 @@ $navbarDetached = ($navbarDetached ?? '');
               <div class="dropdown-divider"></div>
             </li>
             <li>
-              <a class="dropdown-item" href="{{ Route::has('profile.show') ? route('profile.show') : url('pages/profile-user') }}">
+              <a class="dropdown-item" href="{{ route('profile.show') }}">
                 <i class="mdi mdi-account-outline me-2"></i>
-                <span class="align-middle">Profile</span>
+                <span class="align-middle"></span>
               </a>
             </li>
             {{-- @if (Auth::check() && Laravel\Jetstream\Jetstream::hasApiFeatures())
