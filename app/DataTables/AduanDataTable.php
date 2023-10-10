@@ -76,6 +76,7 @@ class AduanDataTable extends DataTable
                 ->leftJoin('users', 'users.id', '=', 'aduan.id_user')
                 ->leftJoin('subkategori', 'subkategori.id', '=', 'aduan.id_subkategori')
                 ->select('users.name AS users_name', 'aduan.id_role', 'users.age AS users_age', 'users.job_or_position AS users_job_or_position', 'aduan.bukti', 'subkategori.name AS subkategori_name', 'aduan.aduan')
+                ->where('aduan.id_aduan', null)
                 ->limit(1);
         }
     }

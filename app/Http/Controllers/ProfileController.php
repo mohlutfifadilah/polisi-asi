@@ -16,17 +16,26 @@ class ProfileController extends Controller
     //
     public function index()
     {
-        $pageConfigs = ['myLayout' => 'horizontal'];
-        $user = User::find(Auth::user()->id);
-        $aduan = Aduan::where('id_user', Auth::user()->id)
-            ->where('id_status', 1)
-            ->where('id_aduan', null)
-            ->get();
-        return view('public.profile', [
+      $user = User::find(Auth::user()->id);
+      $aduan = Aduan::where('id_user', Auth::user()->id)
+      ->where('id_status', 1)
+      ->where('id_aduan', null)
+      ->get();
+      if($user->id_role === 5){
+          $pageConfigs = ['myLayout' => 'horizontal'];
+          return view('public.profile', [
             'pageConfigs' => $pageConfigs,
             'user' => $user,
             'aduan' => $aduan,
-        ]);
+          ]);
+        }else{
+          $pageConfigs = ['myLayout' => 'vertical'];
+          return view('admin.profile', [
+              'pageConfigs' => $pageConfigs,
+              'user' => $user,
+              'aduan' => $aduan,
+          ]);
+        }
     }
 
     public function edit()
@@ -130,13 +139,17 @@ class ProfileController extends Controller
     public function changePassword()
     {
         $user = User::find(Auth::user()->id);
-        $pageConfigs = ['myLayout' => 'horizontal'];
+        if ($user->id_role != 5){
+          $pageConfigs = ['myLayout' => 'vertical'];
+        } else {
+          $pageConfigs = ['myLayout' => 'horizontal'];
+        }
         return view('public.change_password', compact('user', 'pageConfigs'));
     }
 
     public function updatePassword(Request $request, $id)
     {
-      
+
         $user = User::find($id);
 
         # Match The Old Password

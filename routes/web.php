@@ -89,12 +89,15 @@ Route::get('/get-user/{id}', function ($id) {
     }
     return response()->json(['user' => $user]);
 });
-// Route::get('/user/profile', $controller_path . '\ProfileController@index');
+Route::get('/user/profile', function(){
+  dd('s');
+});
 Route::get('/profile', $controller_path . '\ProfileController@index');
 Route::get('/profile/edit', $controller_path . '\ProfileController@edit');
 Route::post('/profile/update/{id}', $controller_path . '\ProfileController@update');
 Route::get('/profile/changePassword', $controller_path . '\ProfileController@changePassword');
 Route::post('/profile/updatePassword/{id}', $controller_path . '\ProfileController@updatePassword');
+
 Route::get('/app/user/list', $controller_path . '\apps\UserList@index')->name('app-user-list');
 Route::get('/app/user/view/account', $controller_path . '\apps\UserViewAccount@index')->name('app-user-view-account');
 Route::get('/app/user/view/security', $controller_path . '\apps\UserViewSecurity@index')->name('app-user-view-security');
