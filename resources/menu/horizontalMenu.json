@@ -6,37 +6,6 @@
             "slug": "home"
         },
         {
-            "name": "Profil",
-            "icon": "menu-icon tf-icons mdi mdi-card-account-details-outline",
-            "slug": "profil",
-            "submenu": [{
-                    "url": "profil/sambutan",
-                    "name": "Sambutan Kepala Dinas",
-                    "icon": "menu-icon tf-icons mdi mdi-account-search-outline",
-                    "slug": "sambutan"
-                },
-                {
-                    "url": "profil/struktur",
-                    "name": "Struktur Organisasi",
-                    "icon": "menu-icon tf-icons mdi mdi-dock-left",
-                    "slug": "struktur",
-                    "target": "_blank"
-                },
-                {
-                    "url": "profil/visi",
-                    "name": "Visi & Misi",
-                    "icon": "menu-icon tf-icons mdi mdi-dock-top",
-                    "slug": "visi"
-                },
-                {
-                    "url": "profil/tugas",
-                    "name": "Tugas Pokok dan Misi",
-                    "icon": "menu-icon tf-icons mdi mdi-dock-window",
-                    "slug": "tugas"
-                }
-            ]
-        },
-        {
             "name": "Pengaduan",
             "icon": "menu-icon tf-icons mdi mdi-account-alert-outline",
             "slug": "pengaduan",

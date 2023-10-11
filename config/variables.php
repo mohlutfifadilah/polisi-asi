@@ -3,8 +3,8 @@
 return [
   "creatorName" => "Lutfi",
   "creatorUrl" => "https://github.com/mohlutfifadilah",
-  "templateName" => "Materialize",
-  "templateSuffix" => "Bootstrap Admin Template",
+  "templateName" => "Dinas Sosial",
+  "templateSuffix" => "Kab. Semarang",
   "templateVersion" => "1.2.2",
   "templateFree" => false,
   "templateDescription" => "Bangun website menggunakan bootstrap 5",

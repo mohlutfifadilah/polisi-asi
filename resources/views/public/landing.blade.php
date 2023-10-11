@@ -4,7 +4,7 @@
 @endphp
 @extends('public/template/master')
 
-@section('title', 'Dinas Sosial Kab. Semarang')
+@section('title', 'Beranda')
 @section('vendor-style')
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/swiper/swiper.css') }}" />

@@ -29,7 +29,7 @@
     <div class="row gy-4">
 
         <!-- Total Transactions & Report Chart -->
-        <div class="col-12 col-xl-8">
+        <div class="col-12 col-xl-12">
             <div class="card">
                 <div class="row">
                     <div class="col-md-12">
