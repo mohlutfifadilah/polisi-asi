@@ -24,7 +24,6 @@ return new class extends Migration {
       $table->integer('age')->nullable();
       $table->integer('is_active')->default(1);
       $table->rememberToken();
-      $table->foreignId('current_team_id')->nullable();
       $table->timestamps();
     });
   }

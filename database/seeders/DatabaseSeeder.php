@@ -71,6 +71,8 @@ class DatabaseSeeder extends Seeder
       StatusSeeder::class,
       KategoriSeeder::class,
       SubkategoriSeeder::class,
+      CarouselSeeder::class,
+      PelayananSeeder::class,
     ]);
   }
 }
