@@ -177,7 +177,8 @@ Route::get('/jawab-respon/{token}/{aduan}', function ($token, $aduan) {
         ->orWhere('bukti', $selectedAduan->bukti)
         ->orderBy('created_at', 'ASC')
         ->get();
-    return view('public.jawabAduan', compact('token', 'allAduan', 'selectedAduan'));
+        $pageConfigs = ['myLayout' => 'horizontal'];
+    return view('public.jawabAduan', compact('token', 'allAduan', 'selectedAduan'), ['pageConfigs' => $pageConfigs]);
 })->name('formJawab');
 Route::post('/reset-password', $controller_path . '\authentications\ForgotPasswordCover@submitResetPassword')->name('reset-password');
 Route::get('/auth/two-steps-basic', $controller_path . '\authentications\TwoStepsBasic@index')->name('auth-two-steps-basic');
