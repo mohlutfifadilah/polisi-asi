@@ -108,10 +108,14 @@
                         <div class="card-body">
                             <div class="card-info mb-3 py-2 mb-lg-1 mb-xl-3">
                                 <h5 class="mb-3 mb-lg-2 mb-xl-3 text-nowrap">Masuk</h5>
-                                <div class="badge bg-label-danger rounded-pill lh-xs">{{ \Carbon\Carbon::parse(\Carbon\Carbon::now())->locale('id')->isoFormat('MMMM YYYY') }}</div>
+                                <div class="badge bg-label-danger rounded-pill lh-xs">
+                                    {{ \Carbon\Carbon::parse(\Carbon\Carbon::now())->locale('id')->isoFormat('MMMM YYYY') }}
+                                </div>
                             </div>
                             <div class="d-flex align-items-end flex-wrap gap-1">
-                                <h4 class="mb-0 me-2">{{ \App\Models\Aduan::whereYear('created_at', \Carbon\Carbon::now()->year)->whereMonth('created_at', \Carbon\Carbon::now()->month)->where('id_aduan', null)->where('id_status', 0)->count(); }}</h4>
+                                <h4 class="mb-0 me-2">
+                                    {{ \App\Models\Aduan::whereYear('created_at', \Carbon\Carbon::now()->year)->whereMonth('created_at', \Carbon\Carbon::now()->month)->where('id_aduan', null)->where('id_status', 0)->count() }}
+                                </h4>
                                 <small>Aduan</small>
                             </div>
                         </div>
@@ -135,10 +139,14 @@
                         <div class="card-body">
                             <div class="card-info mb-3 py-2 mb-lg-1 mb-xl-3">
                                 <h5 class="mb-3 mb-lg-2 mb-xl-3 text-nowrap">Selesai</h5>
-                                <div class="badge bg-label-success rounded-pill lh-xs">{{ \Carbon\Carbon::parse(\Carbon\Carbon::now())->locale('id')->isoFormat('MMMM YYYY') }}</div>
+                                <div class="badge bg-label-success rounded-pill lh-xs">
+                                    {{ \Carbon\Carbon::parse(\Carbon\Carbon::now())->locale('id')->isoFormat('MMMM YYYY') }}
+                                </div>
                             </div>
                             <div class="d-flex align-items-end flex-wrap gap-1">
-                                <h4 class="mb-0 me-2">{{ \App\Models\Aduan::whereYear('created_at', \Carbon\Carbon::now()->year)->whereMonth('created_at', \Carbon\Carbon::now()->month)->where('id_aduan', null)->where('id_status', 1)->count(); }}</h4>
+                                <h4 class="mb-0 me-2">
+                                    {{ \App\Models\Aduan::whereYear('created_at', \Carbon\Carbon::now()->year)->whereMonth('created_at', \Carbon\Carbon::now()->month)->where('id_aduan', null)->where('id_status', 1)->count() }}
+                                </h4>
                                 <small>Aduan</small>
                             </div>
                         </div>
@@ -205,7 +213,7 @@
                                                 <ul class="list-unstyled mb-0">
                                                     <li class="d-flex mb-3 align-items-center">
                                                         <p class="mb-0 me-2 weekly-sales-text-bg-primary">
-                                                          {{ \App\Models\Aduan::where('id_subkategori', $p->id_subkategori)->where('id_aduan', null)->where(function ($query) {
+                                                            {{ \App\Models\Aduan::where('id_subkategori', $p->id_subkategori)->where('id_aduan', null)->where(function ($query) {
                                                                     $query->where('id_role', 3)->where('id_status', 0);
                                                                 })->orWhere(function ($query) {
                                                                     $query->where('id_role', 4)->where('id_status', 0);
@@ -216,7 +224,9 @@
                                                         <p class="mb-0">Proses</p>
                                                     </li>
                                                     <li class="d-flex align-items-center">
-                                                        <p class="mb-0 me-2 weekly-sales-text-bg-primary">{{ \App\Models\Aduan::where('id_subkategori', $p->id_subkategori)->where('id_aduan', null)->where('id_role', 2)->where('id_status', 1)->count() }}</p>
+                                                        <p class="mb-0 me-2 weekly-sales-text-bg-primary">
+                                                            {{ \App\Models\Aduan::where('id_subkategori', $p->id_subkategori)->where('id_aduan', null)->where('id_role', 2)->where('id_status', 1)->count() }}
+                                                        </p>
                                                         <p class="mb-0">Selesai</p>
                                                     </li>
                                                 </ul>
@@ -243,12 +253,15 @@
         <div class="col-lg-6 col-sm-6">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="mb-0">Aduan {{ \Carbon\Carbon::parse(\Carbon\Carbon::now())->locale('id')->isoFormat('YYYY') }}</h5>
+                    <h5 class="mb-0">Aduan
+                        {{ \Carbon\Carbon::parse(\Carbon\Carbon::now())->locale('id')->isoFormat('YYYY') }}</h5>
                 </div>
                 <div class="card-body">
                     <div class="card-info">
                         <p class="text-muted mb-2">Total Aduan tahun ini</p>
-                        <h5 class="mb-0">{{ \App\Models\Aduan::whereYear('created_at', \Carbon\Carbon::now()->year)->whereMonth('created_at', \Carbon\Carbon::now()->month)->where('id_aduan', null)->count(); }}</h5>
+                        <h5 class="mb-0">
+                            {{ \App\Models\Aduan::whereYear('created_at', \Carbon\Carbon::now()->year)->whereMonth('created_at', \Carbon\Carbon::now()->month)->where('id_aduan', null)->count() }}
+                        </h5>
                     </div>
                     <div id="saleThisMonth"></div>
                 </div>
@@ -259,7 +272,7 @@
     </div>
     <div class="row gy-4 mb-4">
         <!-- Aduan Terbaru -->
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-lg-12">
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
@@ -298,229 +311,96 @@
         <!--/ Aduan Terbaru -->
 
         <!-- Top Referral Source  -->
-        <div class="col-12 col-lg-6">
+        {{-- <div class="col-12 col-lg-6">
             <div class="card h-100">
                 <div class="card-header d-flex justify-content-between">
                     <div class="card-title m-0">
-                        <h5 class="mb-0">Top Referral Sources</h5>
+                        <h5 class="mb-0">Kategori</h5>
                         <small class="text-muted">82% Activity Growth</small>
-                    </div>
-                    <div class="dropdown">
-                        <button class="btn p-0" type="button" id="earningReportsTabsId" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <i class="mdi mdi-dots-vertical mdi-24px"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="earningReportsTabsId">
-                            <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                            <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                        </div>
                     </div>
                 </div>
                 <div class="card-body pb-1">
                     <ul class="nav nav-tabs nav-tabs-widget pb-3 gap-4 mx-1 d-flex flex-nowrap" role="tablist">
-                        <li class="nav-item">
-                            <a href="javascript:void(0);"
-                                class="nav-link btn active d-flex flex-column align-items-center justify-content-center"
-                                role="tab" data-bs-toggle="tab" data-bs-target="#navs-orders-id"
-                                aria-controls="navs-orders-id" aria-selected="true">
-                                <div class="avatar">
-                                    <div class="avatar-initial bg-label-secondary rounded">
-                                        <i class="mdi mdi-cellphone"></i>
+                        @foreach ($kategori as $key => $k)
+                            <li class="nav-item">
+                                <a href="javascript:void(0);"
+                                    class="nav-link btn {{ $key === 0 ? 'active' : '' }} d-flex flex-column align-items-center justify-content-center"
+                                    role="tab" data-bs-toggle="tab" data-bs-target="#navs-{{ $k->name }}"
+                                    aria-controls="navs-{{ $k->name }}" aria-selected="true">
+                                    <div class="avatar">
+                                        <div class="avatar-initial bg-label-secondary rounded">
+                                            {{ $k->name }}
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="javascript:void(0);"
-                                class="nav-link btn d-flex flex-column align-items-center justify-content-center"
-                                role="tab" data-bs-toggle="tab" data-bs-target="#navs-sales-id"
-                                aria-controls="navs-sales-id" aria-selected="false">
-                                <div class="avatar">
-                                    <div class="avatar-initial bg-label-secondary rounded">
-                                        <i class="mdi mdi-television"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="javascript:void(0);"
-                                class="nav-link btn d-flex flex-column align-items-center justify-content-center"
-                                role="tab" data-bs-toggle="tab" data-bs-target="#navs-profit-id"
-                                aria-controls="navs-profit-id" aria-selected="false">
-                                <div class="avatar">
-                                    <div class="avatar-initial bg-label-secondary rounded">
-                                        <i class="mdi mdi-gamepad-circle-outline"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="javascript:void(0);"
-                                class="nav-link btn d-flex align-items-center justify-content-center disabled"
-                                role="tab" data-bs-toggle="tab" aria-selected="false">
-                                <div class="avatar">
-                                    <div class="avatar-initial bg-label-secondary rounded">
-                                        <i class="mdi mdi-plus"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                     <div class="tab-content p-0 ms-0 ms-sm-2">
-                        <div class="tab-pane fade show active" id="navs-orders-id" role="tabpanel">
-                            <div class="table-responsive text-nowrap">
-                                <table class="table table-borderless">
-                                    <thead>
-                                        <tr>
-                                            <th class="ps-0 fw-medium text-heading">Image</th>
-                                            <th class="fw-medium ps-0 text-heading">Product Name</th>
-                                            <th class="pe-0 fw-medium text-end text-heading">Status</th>
-                                            <th class="pe-0 fw-medium text-end text-heading">Revenue</th>
-                                            <th class="pe-0 text-end fw-medium text-heading">Conversion</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="ps-0">
-                                                <img src="{{ asset('assets//img/products/samsung-s22.png') }}"
-                                                    alt="samsung" class="rounded" height="34">
-                                            </td>
-                                            <td class="text-heading fw-semibold ps-0">Oneplus 9 Pro</td>
-                                            <td class="text-heading text-end pe-0"><span
-                                                    class="badge rounded-pill bg-label-primary">Out of Stock</span></td>
-                                            <td class="text-heading text-end pe-0 fw-semibold">$12.5k</td>
-                                            <td class="pe-0 text-end fw-semibold h6 text-success">+24%</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="ps-0">
-                                                <img src="{{ asset('assets/img/products/apple-iPhone-13-pro.png') }}"
-                                                    alt="iphone" class="rounded" height="34">
-                                            </td>
-                                            <td class="text-heading fw-semibold ps-0">Apple iPhone 13 Pro</td>
-                                            <td class="text-heading text-end pe-0"><span
-                                                    class="badge rounded-pill bg-label-success">In Stock</span></td>
-                                            <td class="text-heading text-end pe-0 fw-semibold">$45k</td>
-                                            <td class="pe-0 text-end fw-semibold h6 text-danger">-18%</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="ps-0">
-                                                <img src="{{ asset('assets//img/products/oneplus-9-pro.png') }}"
-                                                    alt="us-flag" class="rounded" height="34">
-                                            </td>
-                                            <td class="text-heading fw-semibold ps-0">Oneplus 9 Pro</td>
-                                            <td class="text-heading text-end pe-0"><span
-                                                    class="badge rounded-pill bg-label-warning">Coming Soon</span></td>
-                                            <td class="text-heading text-end pe-0 fw-semibold text-heading">$98.2k</td>
-                                            <td class="pe-0 text-end fw-semibold h6 text-success">+55%</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div class="tab-pane fade show active" id="navs-PPSKS" role="tabpanel">
+                                <div class="table-responsive text-nowrap">
+                                    <table class="table table-borderless">
+                                        <thead>
+                                            <tr>
+                                                <th class="ps-0 fw-medium text-heading">Bidang</th>
+                                                <th class="fw-medium ps-0 text-heading">Masuk</th>
+                                                <th class="pe-0 fw-medium text-end text-heading">Selesai</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($subkategori as $s)
+                                              @php
+                                                $count_masuk = \App\Models\Aduan::where('id_subkategori', 1)->where('id_aduan', null)->where('id_status', 0)->count();
+                                                $count_selesai = \App\Models\Aduan::where('id_subkategori', 1)->where('id_aduan', null)->where('id_status', 1)->count();
+                                                $bidang1 = \App\Models\Subkategori::where('id_kategori', 1)->get();
+                                              @endphp
+                                                <tr>
+                                                    <td class="ps-0">
+                                                        {{ $bidang1->name }}
+                                                    </td>
+                                                    <td class="text-heading text-end pe-0 fw-semibold">{{ $count_masuk }}</td>
+                                                    <td class="pe-0 text-end fw-semibold h6 text-success">{{ $count_selesai }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="navs-sales-id" role="tabpanel">
-                            <div class="table-responsive text-nowrap">
-                                <table class="table table-borderless">
-                                    <thead>
-                                        <tr>
-                                            <th class="ps-0 fw-medium text-heading">Image</th>
-                                            <th class="fw-medium ps-0 text-heading">Product Name</th>
-                                            <th class="pe-0 fw-medium text-end text-heading">Status</th>
-                                            <th class="pe-0 fw-medium text-end text-heading">Revenue</th>
-                                            <th class="pe-0 text-end fw-medium text-heading">Conversion</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="ps-0">
-                                                <img src="{{ asset('assets//img/products/apple-mac-mini.png') }}"
-                                                    alt="mac-mini" class="rounded" height="34">
-                                            </td>
-                                            <td class="text-heading fw-semibold ps-0">Apple Mac Mini</td>
-                                            <td class="text-heading text-end pe-0"><span
-                                                    class="badge rounded-pill bg-label-success">In Stock</span></td>
-                                            <td class="text-heading text-end pe-0 fw-semibold">$94.6k</td>
-                                            <td class="pe-0 text-end fw-semibold h6 text-success">+16%</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="ps-0">
-                                                <img src="{{ asset('assets//img/products/hp-envy-x360.png') }}"
-                                                    alt="hp-envy" class="rounded" height="34">
-                                            </td>
-                                            <td class="text-heading fw-semibold ps-0">Newest HP Envy x360</td>
-                                            <td class="text-heading text-end pe-0"><span
-                                                    class="badge rounded-pill bg-label-warning">Coming Soon</span></td>
-                                            <td class="text-heading text-end pe-0 fw-semibold">$76.5k</td>
-                                            <td class="pe-0 text-end fw-semibold h6 text-success">+27%</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="ps-0">
-                                                <img src="{{ asset('assets//img/products/dell-inspiron-3000.png') }}"
-                                                    alt="dell" class="rounded" height="34">
-                                            </td>
-                                            <td class="text-heading fw-semibold ps-0">Dell Inspiron 3000</td>
-                                            <td class="text-heading text-end pe-0"><span
-                                                    class="badge rounded-pill bg-label-primary">Out of Stock</span></td>
-                                            <td class="text-heading text-end pe-0 fw-semibold">$69.3k</td>
-                                            <td class="pe-0 text-end fw-semibold h6 text-danger">-9%</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                    </div>
+                    <div class="tab-content p-0 ms-0 ms-sm-2">
+                            <div class="tab-pane fade show active" id="navs-PPMKS" role="tabpanel">
+                                <div class="table-responsive text-nowrap">
+                                    <table class="table table-borderless">
+                                        <thead>
+                                            <tr>
+                                                <th class="ps-0 fw-medium text-heading">Bidang</th>
+                                                <th class="fw-medium ps-0 text-heading">Masuk</th>
+                                                <th class="pe-0 fw-medium text-end text-heading">Selesai</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($subkategori as $s)
+                                              @php
+                                                $count_masuk = \App\Models\Aduan::where('id_subkategori', 2)->where('id_aduan', null)->where('id_status', 0)->count();
+                                                $count_selesai = \App\Models\Aduan::where('id_subkategori', 2)->where('id_aduan', null)->where('id_status', 1)->count();
+                                                $bidang2 = \App\Models\Subkategori::where('id_kategori', 2)->get();
+                                              @endphp
+                                                <tr>
+                                                    <td class="ps-0">
+                                                        {{ $s->name }}
+                                                    </td>
+                                                    <td class="text-heading text-end pe-0 fw-semibold">{{ $count_masuk }}</td>
+                                                    <td class="pe-0 text-end fw-semibold h6 text-success">{{ $count_selesai }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="navs-profit-id" role="tabpanel">
-                            <div class="table-responsive text-nowrap">
-                                <table class="table table-borderless">
-                                    <thead>
-                                        <tr>
-                                            <th class="ps-0 fw-medium text-heading">Image</th>
-                                            <th class="fw-medium ps-0 text-heading">Product Name</th>
-                                            <th class="pe-0 fw-medium text-end text-heading">Status</th>
-                                            <th class="pe-0 fw-medium text-end text-heading">Revenue</th>
-                                            <th class="pe-0 text-end fw-medium text-heading">Conversion</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="ps-0">
-                                                <img src="{{ asset('assets//img/products/sony-play-station-5.png') }}"
-                                                    alt="sony-play-station" class="rounded" height="34">
-                                            </td>
-                                            <td class="text-heading fw-semibold ps-0">Sony Play Station 5</td>
-                                            <td class="text-heading text-end pe-0"><span
-                                                    class="badge rounded-pill bg-label-warning">Coming Soon</span></td>
-                                            <td class="text-heading text-end pe-0 fw-semibold">$18.6k</td>
-                                            <td class="pe-0 text-end fw-semibold h6 text-success">+34%</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="ps-0">
-                                                <img src="{{ asset('assets//img/products/xbox-series-x.png') }}"
-                                                    alt="xbox" class="rounded" height="34">
-                                            </td>
-                                            <td class="text-heading fw-semibold ps-0">XBOX Series X</td>
-                                            <td class="text-heading text-end pe-0"><span
-                                                    class="badge rounded-pill bg-label-primary">Out of Stock</span></td>
-                                            <td class="text-heading text-end pe-0 fw-semibold">$29.7k</td>
-                                            <td class="pe-0 text-end fw-semibold h6 text-danger">-21%</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="ps-0">
-                                                <img src="{{ asset('assets//img/products/nintendo-switch.png') }}"
-                                                    alt="nintendo-switch" class="rounded" height="34">
-                                            </td>
-                                            <td class="text-heading fw-semibold ps-0">Nintendo Switch</td>
-                                            <td class="text-heading text-end pe-0"><span
-                                                    class="badge rounded-pill bg-label-success">In Stock</span></td>
-                                            <td class="text-heading text-end pe-0 fw-semibold">$10.4k</td>
-                                            <td class="pe-0 text-end fw-semibold h6 text-success">+38%</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!--/ Top Referral Source  -->
 
         {{-- <!-- Total Impression & Order Chart -->
