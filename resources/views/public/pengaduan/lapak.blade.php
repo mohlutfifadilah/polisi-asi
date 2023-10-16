@@ -50,7 +50,7 @@
                                         <div class="timeline-event">
                                             <div class="timeline-header mb-1">
                                                 <h6 class="mb-2 fw-semibold">{{ $subkategori->name }}</h6>
-                                                <small class="text-muted">{{ waktuLalu(strtotime($a->created_at)) }}</small>
+                                                <small class="text-muted">{{ \Carbon\Carbon::parse($a->created_at)->locale('id')->isoFormat('dddd, D MMMM YYYY HH:mm:ss') }}</small>
                                             </div>
                                             <p class="text-justify mb-1 mt-2">{{ $a->aduan }}</p>
                                             <p class="text-muted mb-2">{{ $a->response }}</p>

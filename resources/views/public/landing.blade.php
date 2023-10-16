@@ -168,15 +168,29 @@
                             @endphp
                             <li class="d-flex mb-4">
                                 <div class="d-flex w-100 flex-wrap align-items-center gap-2">
-                                    <div class="me-2">
-                                        <h6 class="mb-0">{{ $subkategori->name }}</h6>
-                                        {{-- <small class="text-muted">{{ \Illuminate\Support\Str::limit($a->aduan, 50) }}</small> --}}
-                                        <p class="text-justify mb-0 mt-2">{{ $a->aduan }}</p>
-                                        <small class="text-muted">{{ $a->response }}</small>
-                                        <br>
-                                        <div class="badge bg-label-primary rounded-pill mt-3">
-                                            {{ waktuLalu(strtotime($a->created_at)) }}</div>
-                                    </div>
+                                    <ul class="timeline card-timeline mb-3">
+                                        <li class="timeline-item timeline-item-transparent">
+                                            <span class="timeline-point timeline-point-danger"></span>
+                                            @php
+                                                $subkategori = \App\Models\Subkategori::find($a->id_subkategori);
+                                            @endphp
+                                            <div class="timeline-event">
+                                                <div class="timeline-header mb-1">
+                                                    <h6 class="mb-2 fw-semibold">{{ $subkategori->name }}</h6>
+                                                    <small
+                                                        class="text-muted">{{ \Carbon\Carbon::parse($a->created_at)->locale('id')->isoFormat('dddd, D MMMM YYYY HH:mm:ss') }}</small>
+                                                </div>
+                                                <p class="text-justify mb-1 mt-2">{{ $a->aduan }}</p>
+                                                <span class="text-sm text-muted d-inline-block text-truncate mb-0"
+                                                    style="max-width: 650px;">
+                                                    {{ $a->response }}
+                                                </span>
+                                                <br>
+                                        <a href="{{ route('detailAduan', $a->id) }}"
+                                            class="btn btn-sm btn-primary mt-2">Detail</a>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </div>
                             </li>
                         @endforeach
@@ -224,7 +238,8 @@
                                             <a href="{{ $p->url }}" target="_blank" rel="noopener noreferrer">
                                                 <div class="card-body">
                                                     <h3><img src="{{ asset('storage/pelayanan/' . $p->image) }}"
-                                                            class="d-block w-100" alt="..." height="200" width="150"></h3>
+                                                            class="d-block w-100" alt="..." height="200"
+                                                            width="150"></h3>
                                                 </div>
                                             </a>
                                         </div>

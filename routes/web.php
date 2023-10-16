@@ -151,6 +151,12 @@ Route::get('/pengaduan/kontak-aduan', function () {
     return view('public.pengaduan.kontak', ['pageConfigs' => $pageConfigs]);
 });
 
+Route::get('/pengaduan/detail-aduan/{id}', function ($id) {
+    $pageConfigs = ['myLayout' => 'horizontal'];
+    $aduan = Aduan::find($id);
+    return view('public.pengaduan.detail', compact('aduan'), ['pageConfigs' => $pageConfigs]);
+})->name('detailAduan');
+
 // authentication
 Route::get('/auth/login-basic', $controller_path . '\authentications\LoginBasic@index')->name('auth-login-basic');
 Route::get('/auth/login-cover', $controller_path . '\authentications\LoginCover@index')->name('auth-login-cover');

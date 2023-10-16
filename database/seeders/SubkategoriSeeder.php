@@ -49,7 +49,7 @@ class SubkategoriSeeder extends Seeder
       ],
       [
         'id_kategori' => 1,
-        'name' => 'REKOMENDASI KERINGANAN BIAYA AJAK KENDARAAN BERMOTOR YANG DIGUNAKAN UNTUK KEGIATAN SOSIAL',
+        'name' => 'REKOMENDASI KERINGANAN BIAYA PAJAK KENDARAAN BERMOTOR YANG DIGUNAKAN UNTUK KEGIATAN SOSIAL',
       ],
       [
         'id_kategori' => 1,

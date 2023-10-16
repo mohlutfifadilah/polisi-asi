@@ -295,11 +295,13 @@
                                     </div>
                                     <p class="text-muted mb-2">{{ $a->aduan }}</p>
                                     <div class="d-flex">
-                                        <a href="javascript:void(0)" class="me-3">
+                                        @if ($a->bukti)
+                                          <a href="javascript:void(0)" class="me-3">
                                             <img src="{{ asset('storage/aduan/' . $a->bukti) }}" alt="Bukti"
                                                 width="100" class="mx-auto">
                                             {{-- <span class="fw-semibold text-muted">invoices.pdf</span> --}}
                                         </a>
+                                        @endif
                                     </div>
                                 </div>
                             </li>

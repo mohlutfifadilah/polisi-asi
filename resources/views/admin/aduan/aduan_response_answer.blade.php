@@ -54,11 +54,13 @@
                 <dt class="col-sm-3">Alamat</dt>
                 <dd class="col-sm-9">{{ $user->address }}</dd>
 
-                <dt class="col-sm-3">Bukti Aduan</dt>
-                <dd class="col-sm-9">
-                    <img src="{{ asset('/storage/aduan/' . $selectedAduan->bukti) }}" class="img-fluid d-block" alt=""
-                        width="250" height="250">
-                </dd>
+                @if ($selectedAduan->bukti)
+                    <dt class="col-sm-3">Bukti Aduan</dt>
+                    <dd class="col-sm-9">
+                        <img src="{{ asset('/storage/aduan/' . $selectedAduan->bukti) }}" class="img-fluid d-block"
+                            alt="" width="250" height="250">
+                    </dd>
+                @endif
             </dl>
             <h5 class="mb-4">Aduan :</h5>
             @foreach ($aduan as $aduan)
@@ -71,11 +73,13 @@
                                 <small
                                     class="text-muted">{{ \Carbon\Carbon::parse($aduan->created_at)->locale('id')->isoFormat('dddd, D MMMM YYYY HH:mm:ss') }}</small>
                             </div>
-                            <p class="text-muted mb-2">@if (!is_null($aduan->response))
-                              {{ $aduan->response }}
-                              @else
-                              <span class="badge rounded-pill bg-danger">Belum direspon</span>
-                            @endif</p>
+                            <p class="text-muted mb-2">
+                                @if (!is_null($aduan->response))
+                                    {{ $aduan->response }}
+                                @else
+                                    <span class="badge rounded-pill bg-danger">Belum direspon</span>
+                                @endif
+                            </p>
                         </div>
                     </li>
                 </ul>

@@ -113,7 +113,6 @@ class AduanController extends Controller
         $selectedAduan = Aduan::find($id);
         $aduan = Aduan::where('id', $selectedAduan->id_aduan)
             ->orWhere('id', $id)
-            ->orWhere('bukti', $selectedAduan->bukti)
             ->orderBy('created_at', 'ASC')
             ->get();
 

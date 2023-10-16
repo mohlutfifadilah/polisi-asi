@@ -49,12 +49,10 @@ class PengaduanController extends Controller
           [
             'id_kategori' => 'required',
             'aduan' => 'required',
-            'bukti' => 'max:2048',
           ],
           [
             'id_kategori.required' => 'Kategori tidak boleh kosong',
             'aduan.required' => 'Aduan tidak boleh kosong',
-            'bukti.max' => 'File jangan lebih dari 2 mb'
           ],
         );
 
@@ -74,15 +72,24 @@ class PengaduanController extends Controller
             $file->move('storage/aduan/', $bukti);
             $bukti = str_replace('aduan/', '', $bukti);
             // $bukti = $request->file('bukti')->getClientOriginalName();
-        }
-        Aduan::create([
+            Aduan::create([
+                'id_user' => $request->id_user,
+                'id_role' => 2, // pa kadin disposisi
+                'id_subkategori' => $request->id_kategori,
+                'id_status' => false,
+                'bukti' => $bukti,
+                'aduan' => $request->aduan,
+            ]);
+        } else {
+
+          Aduan::create([
             'id_user' => $request->id_user,
             'id_role' => 2, // pa kadin disposisi
             'id_subkategori' => $request->id_kategori,
             'id_status' => false,
-            'bukti' => $bukti,
             'aduan' => $request->aduan,
-        ]);
+          ]);
+        }
 
         Mail::send('emails.submitAduan', ['user' => $user], function ($message) use ($user) {
             $message->to($user->email);
