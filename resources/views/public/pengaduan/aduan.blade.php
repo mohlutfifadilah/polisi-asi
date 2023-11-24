@@ -42,17 +42,17 @@
                         <div class="card-body">
                             <form action="{{ route('lapor-aduan.store') }}" method="post" enctype="multipart/form-data">
                                 @csrf
-                                <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">
-                                <input type="hidden" name="id_role" value="{{ Auth::user()->id_role }}">
+                                {{-- <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">
+                                <input type="hidden" name="id_role" value="{{ Auth::user()->id_role }}"> --}}
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-floating form-floating-outline mb-4">
                                             <select class="form-select" id="exampleFormControlSelect1"
                                                 aria-label="Default select example" name="id_kategori">
                                                 <option selected disabled>Pilih Kategori</option>
-                                                @foreach ($subkategori as $s)
+                                                {{-- @foreach ($subkategori as $s)
                                                     <option value="{{ $s->id }}">{{ $s->name }}</option>
-                                                @endforeach
+                                                @endforeach --}}
                                             </select>
                                             <label for="exampleFormControlSelect1">Kategori</label>
                                         </div>
@@ -70,7 +70,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end">
-                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                    <button class="btn btn-success" type="submit">Submit</button>
                                 </div>
                             </form>
                         </div>

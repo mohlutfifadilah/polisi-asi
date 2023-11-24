@@ -19,7 +19,7 @@
         <a href="{{ url('/') }}" class="app-brand-link gap-2">
             <span class="app-brand-logo demo">
                 {{-- @include('_partials.macros',["width"=>25,"withbg"=>'#666cff']) --}}
-                <img src="{{ asset('assets/img/favicon/logo-dinsos.png') }}" alt="logodinsos" width="180">
+                <img src="{{ asset('assets/img/favicon/logo_POLISI-ASI(with text).png') }}" alt="logodinsos" width="180">
             </span>
             {{-- <span class="app-brand-text demo menu-text fw-bold">{{config('variables.templateName')}}</span> --}}
         </a>
@@ -46,8 +46,17 @@
             </a>
         </li>
         <!--/ Style Switcher -->
+        <li class="nav-item mx-4">
+          <a href="/" class="nav-link active">Beranda</a>
+        </li>
+        <li class="nav-item mx-4">
+          <a href="" class="nav-link">Tentang</a>
+        </li>
+        <li class="nav-item mx-4">
+          <a href="{{ url('/lapor') }}" class="nav-link">Lapor</a>
+        </li>
         <!-- User -->
-        <li class="nav-item navbar-dropdown dropdown-user dropdown">
+        <li class="nav-item navbar-dropdown dropdown-user dropdown ms-3">
             @if (Auth::check())
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     @if (empty(Auth::user()->profile_photo_path))
@@ -63,7 +72,7 @@
                     @endif
                 </a>
             @else
-                <a href="/login" class="btn btn-primary">Masuk</a>
+                <a href="/login" class="btn btn-success ms-3">Masuk</a>
             @endif
             <ul class="dropdown-menu dropdown-menu-end">
                 <li>

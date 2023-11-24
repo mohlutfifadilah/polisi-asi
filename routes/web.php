@@ -43,6 +43,7 @@ Route::get('/check-email', function (Request $request) {
     return response()->json(['emailExists' => $exists]);
 });
 Route::get('/dashboard', $controller_path . '\admin\DashboardController@index')->name('dashboard');
+Route::get('/lapor', $controller_path . '\public\LaporController@index')->name('lapor');
 // Main Page Route
 Route::get('/', $controller_path . '\public\PublicController@index');
 Route::get('/dashboard/analytics', $controller_path . '\dashboard\Analytics@index')->name('dashboard-analytics');

@@ -106,16 +106,24 @@
                                     aria-label="Slide 3"></button>
                             </div>
                             <div class="carousel-inner">
-                                @foreach ($carousel as $key => $c)
-                                    <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
-                                        <img src="{{ asset('storage/carousel/' . $c->url) }}" class="d-block w-100"
+                                    <div class="carousel-item active">
+                                        <img src="{{ asset('storage/carousel/carousel1_POLISI-ASI (2).png') }}" class="d-block w-100"
                                             alt="..." height="415">
                                         {{-- <div class="carousel-caption d-none d-md-block">
                                         <h5>First slide label</h5>
                                         <p>Some representative placeholder content for the first slide.</p>
                                     </div> --}}
                                     </div>
-                                @endforeach
+                                {{-- @foreach ($carousel as $key => $c)
+                                    <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                                        <img src="{{ asset('storage/carousel/' . $c->url) }}" class="d-block w-100"
+                                            alt="..." height="415">
+                                        <div class="carousel-caption d-none d-md-block">
+                                        <h5>First slide label</h5>
+                                        <p>Some representative placeholder content for the first slide.</p>
+                                    </div>
+                                    </div>
+                                @endforeach --}}
                                 {{-- <div class="carousel-item">
                                     <img src="{{ asset('storage/carousel/1.jpeg') }}"
                                         class="d-block w-100" alt="..." height="415">
@@ -143,6 +151,37 @@
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Next</span>
                             </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ Total Transactions & Report Chart -->
+
+        <!-- Total Transactions & Report Chart -->
+        <div class="col-12 col-xl-12">
+            <div class="card">
+                <div class="card-body px-5">
+                    <div class="row text-center">
+                        <div class="col-md-3">
+                          <i class="mdi mdi-hours-24 text-success mdi-48px mb-3"></i> <br>
+                          <b class="pt-2">Pelayanan 24 Jam</b>
+                          <p class="pt-1">Setiap detik, menit, jam siap sedia</p>
+                        </div>
+                        <div class="col-md-3">
+                          <i class="mdi mdi-toolbox-outline text-success mdi-48px mb-3"></i> <br>
+                          <b class="pt-2">Pencatatan Optimal</b>
+                          <p class="pt-1">Data yang didapat dipantau langsung oleh dinas</p>
+                        </div>
+                        <div class="col-md-3">
+                          <i class="mdi mdi-clock-fast text-success mdi-48px mb-3"></i> <br>
+                          <b class="pt-2">Respon Cepat</b>
+                          <p class="pt-1">Langsung respon agar bisa monitoring lancar</p>
+                        </div>
+                        <div class="col-md-3">
+                          <i class="mdi mdi-shield-check text-success mdi-48px mb-3"></i> <br>
+                          <b class="pt-2">Aman Nyaman</b>
+                          <p class="pt-1">Data dan laporan yang diinput aman terjaga</p>
                         </div>
                     </div>
                 </div>

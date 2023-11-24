@@ -10,12 +10,12 @@
             <a href="{{ url('/') }}" class="app-brand-link">
                 <span class="app-brand-logo demo">
                     {{-- @include('_partials.macros',["width"=>25,"withbg"=>'#666cff']) --}}
-                    <img src="{{ asset('assets/img/favicon/logo-dinsos.png') }}" alt="logodinsos" width="180">
+                    <img src="{{ asset('assets/img/favicon/logo_POLISI-ASI(with text).png') }}" alt="logodinsos" width="180">
                 </span>
                 {{-- <span class="app-brand-text demo menu-text fw-bold ms-2">{{config('variables.templateName')}}</span> --}}
             </a>
 
-            @if (!Auth::user()->id_role === 5)
+            {{-- @if (!Auth::user()->id_role === 5) --}}
                 <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
                     <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -27,7 +27,7 @@
                             fill="currentColor" fill-opacity="0.38" />
                     </svg>
                 </a>
-            @endif
+            {{-- @endif --}}
         </div>
     @endif
 
@@ -37,7 +37,7 @@
         @foreach ($menuData[0]->menu as $menu)
             {{-- adding active and open class if child is active --}}
 
-            @if (in_array(Auth::user()->id_role, $menu->role))
+            {{-- @if (in_array(Auth::user()->id_role, $menu->role)) --}}
                 {{-- menu headers --}}
                 @if (isset($menu->menuHeader))
                     <li class="menu-header fw-light mt-4">
@@ -69,11 +69,11 @@
                     @php
                         $badge = [];
                         $color = 'danger';
-                        $unComplete = \App\Models\Aduan::where('id_role', Auth::user()->id_role)
-                            ->where('id_status', 0)
-                            ->count();
+                        // $unComplete = \App\Models\Aduan::where('id_role', Auth::user()->id_role)
+                        //     ->where('id_status', 0)
+                        //     ->count();
                         $badge[0] = $color;
-                        $badge[1] = $unComplete;
+                        // $badge[1] = $unComplete;
                     @endphp
 
                     @if ($menu->name)
@@ -87,12 +87,12 @@
                                     <i class="{{ $menu->icon }}"></i>
                                 @endisset
                                 <div>{{ isset($menu->name) ? __($menu->name) : '' }}</div>
-                                @isset($menu->badge[0])
+                                {{-- @isset($menu->badge[0])
                                     @if ($unComplete != 0)
                                         <div class="badge bg-{{ $badge[0] }} rounded-pill ms-auto">{{ $badge[1] }}
                                         </div>
                                     @endif
-                                @endisset
+                                @endisset --}}
                             </a>
 
                             {{-- submenu --}}
@@ -124,7 +124,7 @@
                         </li>
                     @endif
                 @endif
-            @endif
+            {{-- @endif --}}
         @endforeach
     </ul>
 
